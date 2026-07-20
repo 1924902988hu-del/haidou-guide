@@ -31,10 +31,26 @@
 - 数据管道:op.gg 173/173 零失败;hexdata 173 文件;图片 583/583;强化描述 %i:% 模板符已清理
 
 遗留(下一迭代):
-- [ ] 部署(Vercel/静态托管)+ 正式站名(不得含英雄名/Riot 商标)
+- [x] 部署 → 已上线 GitHub Pages,见下方 2026-07-20 上线记录
 - [ ] cron 每日自动更新 + 更新失败告警(个人站头号死因是断更)
 - [ ] 强化检索页(按强化反查适配英雄,hexdata augments.json 已有数据)
 - [ ] 大乱斗平衡系数(Wiki ChampionData,调研已验证可抓)
 - [ ] op.gg 页面结构变更的监控(解析器锚点失效时报警而非静默)
 
 教训:预览面板长视口截图会黑屏(compositor 问题),验证多依赖 DOM/JS 提取;op.gg RSC flight 的 metaId/metaType 是稳定解析锚点,比啃渲染树省力。
+
+## 上线 Review(2026-07-20,用户指定 GitHub、弃 Vercel)
+
+- [x] 手机端适配增强:iPhone 安全区 inset(顶栏/页脚)、分类标签触控高度 34px、theme-color、-webkit-text-size-adjust;375px 视口全页截图验证(首页/英雄页/页脚)
+- [x] 仓库:https://github.com/1924902988hu-del/haidou-guide(public,站名 haidou 不含英雄名/Riot 商标)
+- [x] GitHub Pages(Actions workflow 部署 site/ 目录):https://1924902988hu-del.github.io/haidou-guide/
+- [x] 线上实测:首页图标/搜索/英雄页四件套/抖音按钮全部正常,无控制台错误
+
+数据更新流程(当前手动):本地跑 `pipeline/update.sh` → commit + push → Actions 自动重新部署。
+
+教训(重要):本机网络推 git 大包必挂(>2MB pack 即 "remote end hung up",重试无用;http.postBuffer/HTTP1.1 均无效),但 GitHub API 小请求稳定——图片是用 Git Data API 逐 blob 上传后建树提交的(583/583 成功)。以后含大量图片的更新:小批量提交(<1MB/批)或复用 API 上传方案。
+
+待办(上线后):
+- [ ] 数据自动更新(cron/launchd 跑 pipeline + 推送;推送批量注意上面教训)
+- [ ] 强化描述里的 "?" 占位符(Wiki 数值模板未填充,如"获得?法术强度")修复
+- [ ] 国内访问速度评估;必要时自定义域名(不得含英雄名/Riot 商标,备案问题届时评估)
