@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "haidou-site",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8942", "--directory", "/Users/tim.ai/hex-mayhem-guide/site"],
+      "port": 8942
+    }
+  ]
+}
