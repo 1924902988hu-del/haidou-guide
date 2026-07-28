@@ -90,6 +90,11 @@ def main():
     for video in video_rows:
         for video_alias in video.get("heroes", []):
             videos_by_hero.setdefault(video_alias, []).append(video)
+    for video_alias in videos_by_hero:
+        videos_by_hero[video_alias].sort(
+            key=lambda row: (row.get("publishedAt") or "", row.get("reviewedAt") or ""),
+            reverse=True,
+        )
 
     def rune_icon(icon_path):
         rel = "assets/img/rune/" + icon_path.replace("perk-images/", "").replace("/", "_")
@@ -161,15 +166,21 @@ def main():
         icon = img(f"assets/img/champion/{alias}.png", f"{DD_IMG}/{version}/img/champion/{alias}.png")
         stats = {"tier": hx.get("tier"), "winRate": hx.get("winRate"), "pickRate": hx.get("pickRate"),
                  "games": hx.get("games"), "kda": hx.get("kda")}
+        hero_videos = videos_by_hero.get(alias, [])
         index_rows.append({
             "id": int(key), "alias": alias, "name": display, "epithet": epithet,
             "roles": roles, "icon": icon, **stats,
             "search": ",".join(sorted(search_terms)),
+            "videoCount": len(hero_videos),
+            "currentVideoCount": sum(v.get("patchStatus") == "current" for v in hero_videos),
+            "latestVideoAt": max((v.get("publishedAt") or "" for v in hero_videos), default=""),
         })
 
         # ---- 详情 ----
         detail_path = os.path.join(RAW, "hexdata", "heroes", f"{key}.json")
         hx_detail = load_json(detail_path) if os.path.exists(detail_path) else {}
+        existing_site_path = os.path.join(SITE_DATA, "heroes", f"{alias}.json")
+        existing_site = load_json(existing_site_path) if os.path.exists(existing_site_path) else {}
 
         rune_pages = []
         for p in (opgg or {}).get("runePages", [])[:2]:
@@ -215,6 +226,14 @@ def main():
             seen = set()
             return [x for x in seq if not (x in seen or seen.add(x))]
 
+        opgg_core_rows = [[item_ref(i) for i in row] for row in m.get("items", {}).get("cores", [])[:3]]
+        existing_core_rows = (existing_site.get("items") or {}).get("opggCores") or []
+        existing_patch = (existing_site.get("patch") or {}).get("game")
+        # 同补丁的缓存响应偶尔只返回部分组合。新结果更少时保留已发布的完整集合，
+        # 防止视频目录重建顺带把正常攻略数据回退。
+        if existing_patch == game_patch and len(opgg_core_rows) < len(existing_core_rows):
+            opgg_core_rows = existing_core_rows
+
         detail = {
             "id": int(key), "alias": alias, "name": display, "epithet": epithet,
             "roles": roles, "icon": icon,
@@ -233,12 +252,12 @@ def main():
                            [item_ref(i) for i in uniq(m.get("items", {}).get("starter", []))[:4]],
                 "core": [item_ref(i["id"], i.get("name")) for i in formula.get("coreItems", [])],
                 "boots": [item_ref(i) for i in uniq(m.get("items", {}).get("boots", []))[:3]],
-                "opggCores": [[item_ref(i) for i in row] for row in m.get("items", {}).get("cores", [])[:3]],
+                "opggCores": opgg_core_rows,
                 "hexTop": [{"item": item_ref(r["itemId"], r.get("itemName")), "hexLabel": r.get("hexLabel"),
                             "hexScore": r.get("hexScore")} for r in hx_items[:8]],
             },
             "douyinUrl": "https://www.douyin.com/search/" + urllib.parse.quote(f"{display} 海克斯大乱斗"),
-            "videos": videos_by_hero.get(alias, []),
+            "videos": hero_videos,
             "sources": {"opgg": bool(opgg), "hexdata": True},
         }
         save_json(os.path.join(SITE_DATA, "heroes", f"{alias}.json"), detail)

@@ -32,6 +32,12 @@ function matchScore(h) {
 
 function tierClass(t) { return `tier-${t >= 1 && t <= 5 ? t : 0}`; }
 
+function videoBadge(h) {
+  if (!h.videoCount) return '';
+  const current = h.currentVideoCount > 0;
+  return `<span class="video-count${current ? ' current' : ''}" title="${current ? '有当前版本视频' : '有视频思路，需核对版本'}">▶ ${h.videoCount}</span>`;
+}
+
 function render() {
   const list = heroes
     .map(h => [matchScore(h), h])
@@ -46,6 +52,7 @@ function render() {
         <div class="sub">
           <span class="tier-badge ${tierClass(h.tier)}">T${h.tier ?? '?'}</span>
           <span>胜率 ${pct(h.winRate)}</span>
+          ${videoBadge(h)}
         </div>
       </div>
     </a>`).join('');

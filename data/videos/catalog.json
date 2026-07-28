@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "updatedAt": "2026-07-29",
   "videos": [
     {
@@ -18,6 +18,76 @@
       "reviewedAt": "2026-07-29",
       "patchStatus": "needs-game-check",
       "summary": "视频主张机器人拿到“虚幻武器”后，可围绕雷电、攻击特效和控制形成连续触发；装备方向优先技能急速。",
+      "strategy": {
+        "augments": [
+          {
+            "name": "虚幻武器",
+            "priority": "核心",
+            "reason": "让技能施加攻击特效，形成后续连锁触发。"
+          }
+        ],
+        "items": [
+          {
+            "name": "黄昏与黎明",
+            "order": 1,
+            "reason": "视频最终展示的完整装备方案。"
+          },
+          {
+            "name": "残疫",
+            "order": 2,
+            "reason": "视频最终展示的完整装备方案。"
+          },
+          {
+            "name": "兰德里的折磨",
+            "order": 3,
+            "reason": "视频最终展示的完整装备方案。"
+          },
+          {
+            "name": "影焰",
+            "order": 4,
+            "reason": "视频最终展示的完整装备方案。"
+          },
+          {
+            "name": "蜕生",
+            "order": 5,
+            "reason": "视频最终展示的完整装备方案。"
+          },
+          {
+            "name": "灭世者的死亡之帽",
+            "order": 6,
+            "reason": "视频最终展示的完整装备方案。"
+          }
+        ],
+        "runes": [],
+        "skillOrder": [],
+        "summonerSpells": [],
+        "playstyle": [
+          "技能触发攻击特效后继续触发雷电类效果，以控制频率和连锁效果为核心。"
+        ]
+      },
+      "evidence": [
+        {
+          "timestamp": "00:28",
+          "kind": "subtitle",
+          "claim": "作者说明机器人技能可以触发一道雷电。"
+        },
+        {
+          "timestamp": "00:32",
+          "kind": "frame",
+          "claim": "画面明确展示“虚幻武器”强化及其技能施加攻击特效的说明。"
+        },
+        {
+          "timestamp": "00:40",
+          "kind": "subtitle",
+          "claim": "作者说明攻击特效可以继续触发雷电，构成连锁。"
+        },
+        {
+          "timestamp": "01:04",
+          "kind": "frame",
+          "claim": "画面展示黄昏与黎明、残疫、兰德里的折磨、影焰、蜕生和灭世者的死亡之帽六件装备。"
+        }
+      ],
+      "confidence": 0.88,
       "keyPoints": [
         "核心强化是“虚幻武器”，不是无条件适用的固定出装。",
         "思路重点是让技能与雷电类效果持续触发攻击特效，放大机器人的控制频率。",

@@ -36,7 +36,30 @@ pipeline/update.sh --force  # 强制重抓 op.gg（默认按补丁断点续跑�
 
 英雄、装备、符文和强化图片全部本地化到 `site/assets/img/`，页面核心攻略不依赖外链资源。
 
-视频不是由爬虫摘要直接生成。采集只负责拿到公开媒体与元数据，画面/字幕核对后才可标记为 `visual-reviewed`；详见 [`docs/VIDEO_PIPELINE.md`](docs/VIDEO_PIPELINE.md)。
+视频不是由爬虫摘要直接生成。采集只负责拿到公开媒体与元数据；BiliNote 同时核对画面、字幕与语音并通过质量闸门后，才可标记为 `multimodal-reviewed`。人工逐帧复核的旧记录继续使用 `visual-reviewed`；详见 [`docs/VIDEO_PIPELINE.md`](docs/VIDEO_PIPELINE.md)。
+
+## 抖音视频情报
+
+已接入一条可复用的自动化链路：
+
+1. TikHub 按英雄昵称搜索“最新发布 + 最多点赞”的公开抖音视频；
+2. BiliNote 实际读取视频画面、字幕和语音；
+3. `pipeline/video_intelligence.py` 提取强化、出装、符文、技能与时间戳证据；
+4. 只有置信度达标、至少两条时间戳证据且包含画面证据的结果才允许发布。
+
+一键生成五位最久未更新英雄的草稿：
+
+```bash
+python3 pipeline/video_intelligence.py refresh
+```
+
+确认质量闸门后自动写入网站：
+
+```bash
+python3 pipeline/video_intelligence.py refresh --publish
+```
+
+运行前仅需在本地环境配置 `TIKHUB_TOKEN`，并启动已配置多模态模型的 BiliNote。完整字段、状态与安全边界见 [`docs/VIDEO_PIPELINE.md`](docs/VIDEO_PIPELINE.md)。
 
 ## 合规红线(公开运营前提)
 
