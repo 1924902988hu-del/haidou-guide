@@ -7,9 +7,9 @@ function runeBlock(runes) {
   const pages = runes.pages.map((p, i) => `
     <div class="rune-page">
       <div class="rune-styles">
-        <img src="${p.primaryStyle?.icon}" alt=""><b>${p.primaryStyle?.name ?? ''}</b>
+        <img src="${p.primaryStyle?.icon}" alt="${p.primaryStyle?.name ?? ''}"><b>${p.primaryStyle?.name ?? ''}</b>
         <span style="color:var(--muted)">+</span>
-        <img src="${p.subStyle?.icon}" alt="">${p.subStyle?.name ?? ''}
+        <img src="${p.subStyle?.icon}" alt="${p.subStyle?.name ?? ''}">${p.subStyle?.name ?? ''}
         <span class="pr">${i === 0 ? '主流' : '备选'} · 采用率 ${pct(p.pickRate ?? null, 0)}</span>
       </div>
       <div class="rune-row">
@@ -48,14 +48,14 @@ function augBlock(augments, combos) {
   if (!augments.length) return '';
   const rows = augments.map(a => `
     <div class="aug">
-      ${a.icon ? `<img src="${a.icon}" alt="" loading="lazy">` : ''}
+      ${a.icon ? `<img src="${a.icon}" alt="${a.name}" loading="lazy">` : ''}
       <div class="body">
         <div class="t">${a.name}
           ${a.rarity ? `<span class="rarity rarity-${a.rarity}">${a.rarity}</span>` : ''}
           ${a.hexLabel ? `<span class="hexlabel">${a.hexLabel}</span>` : ''}
           ${a.opgg ? `<span class="opgg-mark">▲ op.gg 推荐</span>` : ''}
         </div>
-        ${a.desc ? `<div class="desc">${a.desc}</div>` : ''}
+        ${a.desc ? `<div class="desc">${a.desc}${a.needsGameCheck ? '<span class="game-check">数值以游戏内为准</span>' : ''}</div>` : ''}
       </div>
     </div>`).join('');
   const comboRows = combos.length ? `
@@ -67,6 +67,28 @@ function augBlock(augments, combos) {
     </div>`).join('')}` : '';
   return `<section class="block"><h2>海克斯强化推荐 <small>按推荐度排序,不展示胜率</small></h2>
     <div class="aug-list">${rows}</div>${comboRows}</section>`;
+}
+
+function videoBlock(videos, searchUrl, heroName) {
+  const cards = (videos || []).map(v => `
+    <article class="video-card">
+      <div class="video-meta">
+        <span class="review-badge">✓ ${v.analysisLabel}</span>
+        <span>${v.publishedAt}</span>
+        <span>${v.creator}</span>
+      </div>
+      <h3>${v.title}</h3>
+      <p>${v.summary}</p>
+      <ul>${v.keyPoints.map(point => `<li>${point}</li>`).join('')}</ul>
+      <div class="video-caveat">${v.caveat}</div>
+      <a class="source-link" href="${v.url}" target="_blank" rel="noopener">在抖音查看原视频 ↗</a>
+    </article>`).join('');
+  const label = cards ? '继续找当前版本视频' : `去抖音搜「${heroName} 海克斯大乱斗」`;
+  return `<section class="block video-block">
+    <h2>实战视频思路 <small>来源与核对状态透明</small></h2>
+    ${cards || '<p class="video-empty">暂时没有完成画面核对的视频，不会用搜索摘要冒充攻略。</p>'}
+    <a class="douyin-btn" href="${searchUrl}" target="_blank" rel="noopener">${label}<span>↗</span></a>
+  </section>`;
 }
 
 function itemBlock(items) {
@@ -95,30 +117,37 @@ function itemBlock(items) {
   setPatchBadge(h.patch);
 
   content.innerHTML = [
-    `<div class="hero-head">
-      <img class="avatar" src="${h.icon}" alt="${h.name}">
-      <div>
-        <h1>${h.name} <span class="ep">${h.epithet}</span></h1>
-        <div class="chips">
-          ${h.roles.map(r => `<span class="chip">${({fighter:'战士',mage:'法师',assassin:'刺客',marksman:'射手',tank:'坦克',support:'辅助'})[r] ?? r}</span>`).join('')}
-          <span class="chip" style="color:var(--gold)">T${h.stats.tier ?? '?'}</span>
+    `<div class="hero-summary">
+      <div class="hero-head">
+        <img class="avatar" src="${h.icon}" alt="${h.name}">
+        <div>
+          <p class="eyebrow">${h.patch.game} HERO GUIDE</p>
+          <h1>${h.name} <span class="ep">${h.epithet}</span></h1>
+          <div class="chips">
+            ${h.roles.map(r => `<span class="chip">${({fighter:'战士',mage:'法师',assassin:'刺客',marksman:'射手',tank:'坦克',support:'辅助'})[r] ?? r}</span>`).join('')}
+            <span class="chip tier-chip">T${h.stats.tier ?? '?'}</span>
+          </div>
         </div>
       </div>
+      <div class="stat-row" aria-label="英雄统计">
+        <div class="stat"><b>${pct(h.stats.winRate)}</b>胜率</div>
+        <div class="stat"><b>${pct(h.stats.pickRate)}</b>登场率</div>
+        <div class="stat"><b>${(h.stats.games ?? 0).toLocaleString()}</b>样本场次</div>
+        <div class="stat"><b>${h.stats.kda?.toFixed(2) ?? '—'}</b>KDA</div>
+      </div>
     </div>`,
-    `<div class="stat-row">
-      <div class="stat"><b>${pct(h.stats.winRate)}</b>胜率</div>
-      <div class="stat"><b>${pct(h.stats.pickRate)}</b>登场率</div>
-      <div class="stat"><b>${(h.stats.games ?? 0).toLocaleString()}</b>样本场次</div>
-      <div class="stat"><b>${h.stats.kda?.toFixed(2) ?? '—'}</b>KDA</div>
+    videoBlock(h.videos, h.douyinUrl, h.name),
+    `<div class="guide-layout">
+      <div class="guide-primary">
+        ${augBlock(h.augments, h.combos)}
+        ${itemBlock(h.items)}
+      </div>
+      <div class="guide-secondary">
+        ${runeBlock(h.runes)}
+        ${skillBlock(h.skills)}
+        ${spellBlock(h.spells)}
+      </div>
     </div>`,
-    `<a class="douyin-btn" href="${h.douyinUrl}" target="_blank" rel="noopener">
-      ▶ 去抖音搜「${h.name} 海克斯大乱斗」<small>(需登录抖音)</small>
-    </a>`,
-    augBlock(h.augments, h.combos),
-    itemBlock(h.items),
-    runeBlock(h.runes),
-    skillBlock(h.skills),
-    spellBlock(h.spells),
   ].join('');
 })().catch(err => {
   content.innerHTML = `<div class="empty-tip">${err.message}</div>`;

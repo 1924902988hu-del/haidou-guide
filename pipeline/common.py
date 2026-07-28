@@ -1,5 +1,6 @@
 """公共工具:限速抓取 + op.gg RSC flight 解码。仅用标准库。"""
 import json
+import http.client
 import re
 import time
 import urllib.request
@@ -24,9 +25,17 @@ def fetch(url, *, min_interval=0.0, retries=3, timeout=30, binary=False):
         req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8"})
         try:
             with urllib.request.urlopen(req, timeout=timeout) as resp:
-                data = resp.read()
+                try:
+                    data = resp.read()
+                except http.client.IncompleteRead as e:
+                    # op.gg 偶尔在主体已完整时误报 Content-Length。仅接收足够大的
+                    # 部分响应,调用方仍会对解析后的字段做业务完整性验证。
+                    if len(e.partial) < 100_000:
+                        raise
+                    data = e.partial
                 return data if binary else data.decode("utf-8", errors="replace")
-        except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, ConnectionError) as e:
+        except (urllib.error.URLError, urllib.error.HTTPError, http.client.IncompleteRead,
+                TimeoutError, ConnectionError) as e:
             last_err = e
             # 404 不重试,直接抛给调用方做 slug 回退
             if isinstance(e, urllib.error.HTTPError) and e.code == 404:

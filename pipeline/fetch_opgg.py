@@ -8,6 +8,7 @@
 import os
 import re
 import sys
+import time
 import urllib.error
 
 sys.path.insert(0, os.path.dirname(__file__))
@@ -123,6 +124,24 @@ def fetch_champion(slug):
     return {"slug": slug, "mayhem": mayhem, "runePages": runes}
 
 
+def validate_champion(data):
+    """避免把 op.gg 页面改版、限流或半截响应当成可用攻略。"""
+    mayhem = data.get("mayhem") or {}
+    skills = mayhem.get("skills") or {}
+    items = mayhem.get("items") or {}
+    checks = {
+        "页面锚点": mayhem.get("_anchors_ok") is True,
+        "强化推荐": len(mayhem.get("augments") or []) >= 3,
+        "技能优先级": len(skills.get("priority") or []) == 3,
+        "技能序列": len(skills.get("sequence") or []) >= 15,
+        "出装": bool(items.get("starter") or items.get("cores")),
+        "符文": bool(data.get("runePages")),
+    }
+    failed = [label for label, ok in checks.items() if not ok]
+    if failed:
+        raise ValueError("数据不完整: " + "、".join(failed))
+
+
 def candidates(alias, name_en=None):
     base = alias.lower()
     cands = [SLUG_FIX.get(base, base), base]
@@ -138,39 +157,78 @@ def main():
     if "--only" in sys.argv:
         only = set(sys.argv[sys.argv.index("--only") + 1].split(","))
 
+    static_meta = load_json(os.path.join(RAW, "static_meta.json"))
+    source_version = static_meta["ddragonVersion"]
     champs = load_json(os.path.join(RAW, "ddragon", "champion.json"))["data"]
+    hero_ids = {str(h["heroId"]) for h in load_json(os.path.join(RAW, "hero_list.json"))["hero"]}
+    hex_ids = {str(h["id"]) for h in load_json(os.path.join(RAW, "hexdata", "heroes.json"))}
+    valid_ids = hero_ids & hex_ids
     todo = []  # (key, alias, name_en)
     for cid, c in sorted(champs.items()):
-        todo.append((c["key"], cid, c["title"]))  # zh_CN: title=音译名对搜索无用,只作日志
+        key = str(c["key"])
+        # 新版 Data Dragon 可能包含 Jade_ 等模式内变体,不应当作独立英雄抓取。
+        if cid.startswith("Jade_") or key not in valid_ids:
+            continue
+        todo.append((key, cid, c["name"]))
 
     failed = []
+    fetched = 0
+    skipped = 0
     for n, (key, alias, _) in enumerate(todo, 1):
         slugs = candidates(alias)
         if only and not (set(slugs) & only):
             continue
         out_path = os.path.join(OUT, f"{key}.json")
         if not force and os.path.exists(out_path) and not only:
-            continue
+            previous = load_json(out_path)
+            if previous.get("sourceVersion") == source_version:
+                skipped += 1
+                continue
         data = None
+        last_error = None
         for slug in slugs:
-            try:
-                data = fetch_champion(slug)
+            for attempt in range(4):
+                try:
+                    candidate = fetch_champion(slug)
+                    validate_champion(candidate)
+                    data = candidate
+                    break
+                except urllib.error.HTTPError as e:
+                    last_error = e
+                    if e.code == 404:
+                        break
+                    if attempt == 3:
+                        break
+                except (RuntimeError, ValueError) as e:
+                    last_error = e
+                    if attempt == 3:
+                        break
+            if data is not None:
                 break
-            except urllib.error.HTTPError as e:
-                if e.code != 404:
-                    raise
         if data is None:
             failed.append(alias)
-            print(f"FAIL {alias}: 所有 slug 404: {slugs}")
+            print(f"FAIL {alias}: {last_error or f'所有 slug 404: {slugs}'}")
             continue
         data["heroKey"] = key
         data["alias"] = alias
+        data["sourceVersion"] = source_version
+        data["fetchedAt"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
         save_json(out_path, data)
-        ok = "ok " if data["mayhem"]["_anchors_ok"] else "WARN(锚点缺失) "
-        print(f"{ok}{n}/{len(todo)} {alias} aug={len(data['mayhem']['augments'])} runes={len(data['runePages'])}")
+        fetched += 1
+        print(f"ok {n}/{len(todo)} {alias} aug={len(data['mayhem']['augments'])} runes={len(data['runePages'])}")
 
     if failed:
         print("失败列表:", failed)
+        raise SystemExit(1)
+    if not only:
+        save_json(os.path.join(OUT, "_meta.json"), {
+            "sourceVersion": source_version,
+            "heroCount": len(todo),
+            "fetched": fetched,
+            "skipped": skipped,
+            "completedAt": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        })
+    print(f"op.gg 完整性通过: {len(todo)} 位英雄,本次更新 {fetched},跳过 {skipped}")
 
 
 if __name__ == "__main__":

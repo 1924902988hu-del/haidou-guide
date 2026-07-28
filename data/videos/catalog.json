@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-07-29",
+  "videos": [
+    {
+      "id": "douyin-7602122505302088881",
+      "platform": "抖音",
+      "url": "https://www.douyin.com/video/7602122505302088881",
+      "heroes": [
+        "Blitzcrank"
+      ],
+      "title": "虚幻武器机器人：雷电与控制触发思路",
+      "creator": "乱斗-不良人",
+      "publishedAt": "2026-02-02",
+      "durationSeconds": 67,
+      "analysisStatus": "visual-reviewed",
+      "analysisLabel": "已看画面并核对字幕",
+      "reviewedAt": "2026-07-29",
+      "patchStatus": "needs-game-check",
+      "summary": "视频主张机器人拿到“虚幻武器”后，可围绕雷电、攻击特效和控制形成连续触发；装备方向优先技能急速。",
+      "keyPoints": [
+        "核心强化是“虚幻武器”，不是无条件适用的固定出装。",
+        "思路重点是让技能与雷电类效果持续触发攻击特效，放大机器人的控制频率。",
+        "装备建议偏技能急速；具体数值、触发关系和当前可用装备仍需以游戏内为准。"
+      ],
+      "caveat": "视频早于当前数据版本，属于可尝试的玩法思路，不代表 26.15 已验证答案。"
+    }
+  ]
+}

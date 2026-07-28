@@ -2,7 +2,10 @@
 function setPatchBadge(patch) {
   const el = document.getElementById('patchBadge');
   if (el && patch) {
-    el.innerHTML = `数据版本 <b>${patch.game}</b> · ${patch.hexdataDate || patch.builtAt || ''}`;
+    const versions = patch.statsGame && patch.statsGame !== patch.game
+      ? `静态 <b>${patch.game}</b> · 统计 <b>${patch.statsGame}</b>`
+      : `数据版本 <b>${patch.game}</b>`;
+    el.innerHTML = `${versions}<span class="patch-date"> · ${patch.hexdataDate || patch.builtAt || ''}</span>`;
   }
 }
 

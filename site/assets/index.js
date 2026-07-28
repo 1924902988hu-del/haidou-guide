@@ -14,7 +14,7 @@ const tabs = document.getElementById('roleTabs');
 
 function renderTabs() {
   tabs.innerHTML = ROLES.map(([k, label]) =>
-    `<button class="role-tab${k === activeRole ? ' active' : ''}" data-role="${k}">${label}</button>`).join('');
+    `<button class="role-tab${k === activeRole ? ' active' : ''}" data-role="${k}" aria-pressed="${k === activeRole}">${label}</button>`).join('');
 }
 
 /* 匹配打分:精确昵称 3 > 词首前缀 2 > 词中包含 1;避免"ez"误中拼音中段却把真 EZ 排后 */
@@ -39,7 +39,7 @@ function render() {
     .sort((a, b) => b[0] - a[0])
     .map(([, h]) => h);
   grid.innerHTML = list.map(h => `
-    <a class="hero-card" href="hero.html?c=${h.alias}">
+    <a class="hero-card" href="hero.html?c=${h.alias}" aria-label="${h.name}，T${h.tier ?? '未知'}，胜率 ${pct(h.winRate)}">
       <img src="${h.icon}" alt="${h.name}" loading="lazy" width="44" height="44">
       <div class="info">
         <div class="n">${h.name}</div>
@@ -50,6 +50,8 @@ function render() {
       </div>
     </a>`).join('');
   empty.hidden = list.length > 0;
+  const meta = document.getElementById('resultMeta');
+  if (meta) meta.textContent = `${list.length} / ${heroes.length} 位英雄`;
 }
 
 tabs.addEventListener('click', e => {

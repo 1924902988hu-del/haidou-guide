@@ -10,18 +10,29 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⬡</text></svg>">
 </head>
 <body>
+<a class="skip-link" href="#main">跳到英雄列表</a>
 <header class="topbar">
-  <div class="logo">⬡ 海斗<b>速查</b></div>
+  <a class="logo" href="index.html" aria-label="海斗速查首页">⬡ 海斗<b>速查</b></a>
   <div class="patch-badge" id="patchBadge">加载中…</div>
 </header>
 
-<main class="container">
-  <div class="searchbox">
+<main class="container" id="main">
+  <section class="home-intro" aria-labelledby="homeTitle">
+    <div>
+      <p class="eyebrow">HAIDOU QUICK GUIDE</p>
+      <h1 id="homeTitle">海克斯大乱斗，选完英雄就查</h1>
+      <p>昵称、拼音都能搜；强化、出装、符文和技能顺序集中在一页。</p>
+    </div>
+    <div class="result-meta" id="resultMeta" aria-live="polite">正在读取英雄数据…</div>
+  </section>
+
+  <div class="searchbox" role="search">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a99ac" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-    <input id="search" type="search" placeholder="搜英雄:名字 / 昵称(女枪、蛮王、EZ)/ 拼音" autocomplete="off">
+    <label class="sr-only" for="search">搜索英雄</label>
+    <input id="search" type="search" placeholder="搜英雄：女枪、蛮王、EZ、拼音…" autocomplete="off">
   </div>
 
-  <div class="role-tabs" id="roleTabs"></div>
+  <div class="role-tabs" id="roleTabs" aria-label="按定位筛选"></div>
 
   <div class="hero-grid" id="grid"></div>
   <div class="empty-tip" id="empty" hidden>没有匹配的英雄,换个昵称试试?</div>
