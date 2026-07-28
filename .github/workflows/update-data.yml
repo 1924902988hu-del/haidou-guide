@@ -1,6 +1,10 @@
 name: Update game data
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/update-data.yml"
   schedule:
     - cron: "30 4 * * *"
   workflow_dispatch:
