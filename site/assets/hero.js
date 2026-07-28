@@ -70,22 +70,68 @@ function augBlock(augments, combos) {
 }
 
 function videoBlock(videos, searchUrl, heroName) {
-  const cards = (videos || []).map(v => `
+  const patchLabels = {
+    current: '当前版本',
+    'needs-game-check': '需核对版本',
+    obsolete: '已过时',
+  };
+  const nameList = (rows, formatter) => (rows || []).map(formatter).filter(Boolean);
+  const strategyBlock = strategy => {
+    if (!strategy) return '';
+    const groups = [
+      ['强化', nameList(strategy.augments, row => escapeHTML(typeof row === 'string' ? row : row?.name))],
+      ['出装', nameList(strategy.items, row => escapeHTML(typeof row === 'string' ? row : row?.name))],
+      ['符文', nameList(strategy.runes, escapeHTML)],
+      ['加点', nameList(strategy.skillOrder, escapeHTML)],
+      ['召唤师技能', nameList(strategy.summonerSpells, escapeHTML)],
+    ].filter(([, values]) => values.length);
+    const playstyle = nameList(strategy.playstyle, escapeHTML);
+    if (!groups.length && !playstyle.length) return '';
+    return `<div class="video-strategy">
+      ${groups.map(([label, values]) => `<div class="strategy-row"><b>${label}</b><span>${values.join(' · ')}</span></div>`).join('')}
+      ${playstyle.length ? `<div class="strategy-row"><b>打法</b><span>${playstyle.join('；')}</span></div>` : ''}
+    </div>`;
+  };
+  const evidenceBlock = evidence => {
+    if (!(evidence || []).length) return '';
+    const kindLabels = { frame: '画面', subtitle: '字幕', audio: '语音' };
+    return `<details class="video-evidence">
+      <summary>查看 ${evidence.length} 条时间戳证据</summary>
+      <ol>${evidence.map(row => `<li>
+        <time>${escapeHTML(row.timestamp)}</time>
+        <span class="evidence-kind">${kindLabels[row.kind] || escapeHTML(row.kind)}</span>
+        ${escapeHTML(row.claim)}
+      </li>`).join('')}</ol>
+    </details>`;
+  };
+  const cards = (videos || []).map(v => {
+    const legacyPoints = (v.keyPoints || []).length
+      ? `<ul>${v.keyPoints.map(point => `<li>${escapeHTML(point)}</li>`).join('')}</ul>`
+      : '';
+    const confidence = Number.isFinite(v.confidence)
+      ? `<span>可信度 ${Math.round(v.confidence * 100)}%</span>`
+      : '';
+    return `
     <article class="video-card">
       <div class="video-meta">
-        <span class="review-badge">✓ ${v.analysisLabel}</span>
-        <span>${v.publishedAt}</span>
-        <span>${v.creator}</span>
+        <span class="review-badge">✓ ${escapeHTML(v.analysisLabel)}</span>
+        <span class="patch-status patch-${escapeHTML(v.patchStatus)}">${patchLabels[v.patchStatus] || '版本未知'}</span>
+        <span>${escapeHTML(v.publishedAt)}</span>
+        <span>${escapeHTML(v.creator)}</span>
+        ${confidence}
       </div>
-      <h3>${v.title}</h3>
-      <p>${v.summary}</p>
-      <ul>${v.keyPoints.map(point => `<li>${point}</li>`).join('')}</ul>
-      <div class="video-caveat">${v.caveat}</div>
-      <a class="source-link" href="${v.url}" target="_blank" rel="noopener">在抖音查看原视频 ↗</a>
-    </article>`).join('');
+      <h3>${escapeHTML(v.title)}</h3>
+      <p>${escapeHTML(v.summary)}</p>
+      ${strategyBlock(v.strategy)}
+      ${legacyPoints}
+      ${evidenceBlock(v.evidence)}
+      <div class="video-caveat">${escapeHTML(v.caveat)}</div>
+      <a class="source-link" href="${safeDouyinURL(v.url)}" target="_blank" rel="noopener">在抖音查看原视频 ↗</a>
+    </article>`;
+  }).join('');
   const label = cards ? '继续找当前版本视频' : `去抖音搜「${heroName} 海克斯大乱斗」`;
   return `<section class="block video-block">
-    <h2>实战视频思路 <small>来源与核对状态透明</small></h2>
+    <h2>博主实战 <small>AI 必须读过画面、字幕与语音；结论按视频逐条归属</small></h2>
     ${cards || '<p class="video-empty">暂时没有完成画面核对的视频，不会用搜索摘要冒充攻略。</p>'}
     <a class="douyin-btn" href="${searchUrl}" target="_blank" rel="noopener">${label}<span>↗</span></a>
   </section>`;

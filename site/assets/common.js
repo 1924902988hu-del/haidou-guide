@@ -29,4 +29,21 @@ async function loadJSON(url) {
   return r.json();
 }
 
+function escapeHTML(value) {
+  return String(value ?? '').replace(/[&<>"']/g, char => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+  })[char]);
+}
+
+function safeDouyinURL(value) {
+  try {
+    const url = new URL(value);
+    if (url.protocol !== 'https:') return '#';
+    if (url.hostname !== 'www.douyin.com' && url.hostname !== 'v.douyin.com') return '#';
+    return url.href;
+  } catch {
+    return '#';
+  }
+}
+
 renderFooter();
