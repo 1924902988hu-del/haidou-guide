@@ -9,7 +9,6 @@
 import os
 import re
 import sys
-import time
 import urllib.parse
 
 sys.path.insert(0, os.path.dirname(__file__))
@@ -255,8 +254,7 @@ def main():
     index_rows.sort(key=lambda r: ((r["tier"] or 9), -(r["winRate"] or 0)))
     save_json(os.path.join(SITE_DATA, "index.json"), {
         "patch": {"game": game_patch, "statsGame": stats_patch, "ddragon": version,
-                  "hexdataDate": hx_build.get("reportDate"),
-                  "builtAt": time.strftime("%Y-%m-%d %H:%M")},
+                  "hexdataDate": hx_build.get("reportDate")},
         "heroes": index_rows,
     })
     save_json(os.path.join(RAW, "image_manifest.json"), IMG_MANIFEST)
