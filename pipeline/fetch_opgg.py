@@ -12,12 +12,23 @@ import time
 import urllib.error
 
 sys.path.insert(0, os.path.dirname(__file__))
-from common import fetch, decode_flight, extract_json_object, save_json, load_json
+from common import (
+    decode_flight,
+    extract_json_object,
+    fetch,
+    load_json,
+    save_json,
+    valid_item_core_rows,
+)
 
 ROOT = os.path.join(os.path.dirname(__file__), "..")
 RAW = os.path.join(ROOT, "data", "raw")
 OUT = os.path.join(RAW, "opgg")
 RATE = 0.8
+ASSET_VERSION_RE = re.compile(
+    r"https://opgg-static\.akamaized\.net/meta/images/lol/"
+    r"(\d+\.\d+\.\d+)/"
+)
 
 # ddragon id 小写与 op.gg slug 不一致的已知例外(404 时也会自动试变体)
 SLUG_FIX = {
@@ -65,7 +76,10 @@ def parse_mayhem(text):
     starter = items_between(p_start, p_boots)
     boots = items_between(p_boots, p_core)
     core_flat = items_between(p_core, None)
-    cores = [core_flat[i:i + 3] for i in range(0, len(core_flat) - len(core_flat) % 3, 3)]
+    cores = valid_item_core_rows([
+        core_flat[i:i + 3]
+        for i in range(0, len(core_flat) - len(core_flat) % 3, 3)
+    ])
 
     letters = re.findall(r'"children":"([QWER])"', text)
     priority, sequence = [], []
@@ -116,12 +130,38 @@ def parse_aram_runes(text):
     return keep
 
 
+def extract_asset_version(html):
+    """从 OP.GG 自己的静态资源路径提取页面实际使用的游戏版本。"""
+    versions = sorted(set(ASSET_VERSION_RE.findall(html)))
+    if len(versions) != 1:
+        raise ValueError(f"无法唯一确认 OP.GG 页面版本: {versions or '未找到'}")
+    return versions[0]
+
+
+def probe_source_versions(slug="aatrox"):
+    """用同一英雄核对 Mayhem 攻略页与普通 ARAM 符文页的版本。"""
+    html_m = fetch(f"https://op.gg/lol/modes/aram-mayhem/{slug}/build", min_interval=RATE)
+    html_a = fetch(f"https://op.gg/lol/modes/aram/{slug}/build", min_interval=RATE)
+    return {
+        "mayhem": extract_asset_version(html_m),
+        "aram": extract_asset_version(html_a),
+    }
+
+
 def fetch_champion(slug):
     html_m = fetch(f"https://op.gg/lol/modes/aram-mayhem/{slug}/build", min_interval=RATE)
     mayhem = parse_mayhem(decode_flight(html_m))
     html_a = fetch(f"https://op.gg/lol/modes/aram/{slug}/build", min_interval=RATE)
     runes = parse_aram_runes(decode_flight(html_a))
-    return {"slug": slug, "mayhem": mayhem, "runePages": runes}
+    return {
+        "slug": slug,
+        "mayhem": mayhem,
+        "runePages": runes,
+        "sourceVersions": {
+            "mayhem": extract_asset_version(html_m),
+            "aram": extract_asset_version(html_a),
+        },
+    }
 
 
 def validate_champion(data):
@@ -135,7 +175,12 @@ def validate_champion(data):
         "技能优先级": len(skills.get("priority") or []) == 3,
         "技能序列": len(skills.get("sequence") or []) >= 15,
         "出装": bool(items.get("starter") or items.get("cores")),
+        "核心三件套": bool(items.get("cores")),
         "符文": bool(data.get("runePages")),
+        "来源版本": all(
+            re.fullmatch(r"\d+\.\d+\.\d+", str(version or ""))
+            for version in (data.get("sourceVersions") or {}).values()
+        ) and set((data.get("sourceVersions") or {})) == {"mayhem", "aram"},
     }
     failed = [label for label, ok in checks.items() if not ok]
     if failed:
@@ -153,12 +198,29 @@ def candidates(alias, name_en=None):
 
 def main():
     force = "--force" in sys.argv
+    probe_only = "--probe-only" in sys.argv
     only = None
     if "--only" in sys.argv:
         only = set(sys.argv[sys.argv.index("--only") + 1].split(","))
 
-    static_meta = load_json(os.path.join(RAW, "static_meta.json"))
-    source_version = static_meta["ddragonVersion"]
+    source_versions = probe_source_versions()
+    observed_at = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+    print(
+        "op.gg versions:",
+        "mayhem", source_versions["mayhem"],
+        "aram", source_versions["aram"],
+    )
+    meta_path = os.path.join(OUT, "_meta.json")
+    prior_meta = load_json(meta_path) if os.path.exists(meta_path) else {}
+    save_json(meta_path, {
+        **prior_meta,
+        "sourceVersions": source_versions,
+        "sourceVersionObservedAt": observed_at,
+    })
+    if probe_only:
+        print("op.gg 版本探针完成,未抓取英雄")
+        return
+
     champs = load_json(os.path.join(RAW, "ddragon", "champion.json"))["data"]
     hero_ids = {str(h["heroId"]) for h in load_json(os.path.join(RAW, "hero_list.json"))["hero"]}
     hex_ids = {str(h["id"]) for h in load_json(os.path.join(RAW, "hexdata", "heroes.json"))}
@@ -181,7 +243,7 @@ def main():
         out_path = os.path.join(OUT, f"{key}.json")
         if not force and os.path.exists(out_path) and not only:
             previous = load_json(out_path)
-            if previous.get("sourceVersion") == source_version:
+            if previous.get("sourceVersions") == source_versions:
                 skipped += 1
                 continue
         data = None
@@ -191,6 +253,11 @@ def main():
                 try:
                     candidate = fetch_champion(slug)
                     validate_champion(candidate)
+                    if candidate["sourceVersions"] != source_versions:
+                        raise ValueError(
+                            "抓取期间 OP.GG 页面版本变化: "
+                            f"{candidate['sourceVersions']} != {source_versions}"
+                        )
                     data = candidate
                     break
                 except urllib.error.HTTPError as e:
@@ -211,7 +278,6 @@ def main():
             continue
         data["heroKey"] = key
         data["alias"] = alias
-        data["sourceVersion"] = source_version
         data["fetchedAt"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
         save_json(out_path, data)
         fetched += 1
@@ -221,8 +287,9 @@ def main():
         print("失败列表:", failed)
         raise SystemExit(1)
     if not only:
-        save_json(os.path.join(OUT, "_meta.json"), {
-            "sourceVersion": source_version,
+        save_json(meta_path, {
+            "sourceVersions": source_versions,
+            "sourceVersionObservedAt": observed_at,
             "heroCount": len(todo),
             "fetched": fetched,
             "skipped": skipped,

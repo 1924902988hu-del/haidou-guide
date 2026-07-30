@@ -1,0 +1,169 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-07-29",
+  "reviewType": "human-supervised-pixel-review",
+  "videos": {
+    "7666854136939285760": {
+      "strategyOverrides": {
+        "items": []
+      },
+      "frames": {
+        "00:06": {
+          "verdict": "supported",
+          "sourceClaim": "显示了 Aatrox 在团战中的表现",
+          "publicClaim": "目标英雄：亚托克斯",
+          "cachedPath": "frames/7666854136939285760/screenshot_000_6485f810-32fb-4acc-b20b-db88d943d46c.jpg",
+          "screenshotSha256": "acb332fb79d8671f43b452d7719926f0e4208778769830ea6558af9a2e90f7dc",
+          "finding": "主控英雄头像与暗裔利刃施放条共同支持亚托克斯身份。"
+        },
+        "00:45": {
+          "verdict": "partial",
+          "sourceClaim": "显示了狂妄与大穿的装备图标",
+          "publicClaim": "画面显示带 27 层计数的金色装备图标，当前帧不能唯一确认装备名称",
+          "cachedPath": "frames/7666854136939285760/screenshot_002_d43d377f-fb5d-473c-85ac-ee69188be30a.jpg",
+          "screenshotSha256": "a1d3f503c8ef0cc86bcd9594bb67c4edcfe2c3c94776e261ed7682df8e42c1fb",
+          "finding": "只有小图标和层数，没有名称或悬停提示；不得发布狂妄或大穿名称。"
+        }
+      }
+    },
+    "7666575729266705381": {
+      "strategyOverrides": {
+        "augments": [
+          {
+            "name": "利刃华尔兹",
+            "priority": "画面显示"
+          },
+          {
+            "name": "魄罗蛮冲",
+            "priority": "画面显示"
+          },
+          {
+            "name": "巨人杀手",
+            "priority": "画面显示"
+          }
+        ]
+      },
+      "frames": {
+        "00:00": {
+          "verdict": "partial",
+          "sourceClaim": "展示了利刃华尔兹、喂呜喂呜、巨人杀手",
+          "publicClaim": "强化：利刃华尔兹、魄罗蛮冲、巨人杀手",
+          "cachedPath": "frames/7666575729266705381/screenshot_000_9466b834-2d13-4982-9570-3d7d32c60895.jpg",
+          "screenshotSha256": "6fe493d62f7e312e08bfb2455bcb392c9b60c0f59680a853d4dc86abdb22e901",
+          "finding": "三张卡分别为利刃华尔兹、魄罗蛮冲、巨人杀手；原识别把魄罗蛮冲错写成喂呜喂呜。"
+        },
+        "01:54": {
+          "verdict": "partial",
+          "sourceClaim": "总结千珏的表现",
+          "publicClaim": "目标英雄：千珏；画面显示一次击杀，当时 KDA 为 16/10/40",
+          "cachedPath": "frames/7666575729266705381/screenshot_005_276791ff-ce84-4ee2-86a0-c47d7549a90a.jpg",
+          "screenshotSha256": "e0757a924b3401ed0efc4ec3cf70858062170229c9bc853845f02f767eeb8c0b",
+          "finding": "画面支持该时刻的千珏身份、击杀横幅与 KDA，不支持整体表现总结。"
+        }
+      }
+    },
+    "7661195910239489323": {
+      "strategyOverrides": {
+        "augments": [
+          {
+            "name": "蛋白粉奶昔",
+            "priority": "画面与语音均显示"
+          }
+        ]
+      },
+      "frames": {
+        "00:15": {
+          "verdict": "supported",
+          "sourceClaim": "画面顶部标题明确显示锤石，强化卡明确显示蛋白粉奶昔",
+          "publicClaim": "目标英雄：锤石；强化：蛋白粉奶昔",
+          "cachedPath": "frames/7661195910239489323/screenshot_002_2e1b273d-8b33-4551-95d1-7eec4f94e52d.jpg",
+          "screenshotSha256": "de1259621b8bb684911b7e9ab06d351aa2d197a48f6eb770bb03ffd2845ae028",
+          "finding": "顶部标题明确写锤石，强化卡与中央文字均明确写蛋白粉奶昔。"
+        },
+        "00:21": {
+          "verdict": "supported",
+          "sourceClaim": "目标英雄：锤石",
+          "publicClaim": "目标英雄：锤石",
+          "cachedPath": "frames/7661195910239489323/screenshot_004_514a55d3-04ff-4072-a622-7402cd72dca8.jpg",
+          "screenshotSha256": "4d6b35863947fff27957f750df0439adde97a474288b7c300ea29352e1bab63b",
+          "finding": "顶部标题与大字幕均明确写锤石；嵌入实战画面也是锤石。"
+        }
+      }
+    },
+    "7660904774895783231": {
+      "strategyOverrides": {
+        "augments": [
+          {
+            "name": "秘术冲拳",
+            "priority": "画面显示"
+          }
+        ]
+      },
+      "frames": {
+        "02:45": {
+          "verdict": "partial",
+          "sourceClaim": "海克斯推荐秘术冲拳和升级：无尽之刃。",
+          "publicClaim": "强化：秘术冲拳",
+          "cachedPath": "frames/7660904774895783231/screenshot_004_12c2262a-b2c9-408c-a9ca-514f8f2608bf.jpg",
+          "screenshotSha256": "9f90e9cd5bf986644343234f831042f3925c8e2023250b9cab33bc6f5da17950",
+          "finding": "强化卡与字幕支持秘术冲拳；帧内没有可唯一识别的无尽之刃升级证据。"
+        }
+      }
+    },
+    "7657564076009471460": {
+      "frames": {
+        "00:06": {
+          "verdict": "supported",
+          "sourceClaim": "虚幻行者、穿针引线、水上漫步者强化展示",
+          "publicClaim": "强化：穿针引线",
+          "cachedPath": "frames/7657564076009471460/screenshot_000_d748b9cd-ae71-41c9-9fa1-f34fad4e87e0.jpg",
+          "screenshotSha256": "28e3baa379ae370cc86a649931098bf91c69d15461460acc0d208029ce853a8f",
+          "finding": "强化三选一卡中央明确写穿针引线。"
+        },
+        "00:12": {
+          "verdict": "supported",
+          "sourceClaim": "莉莉娅团战表现展示",
+          "publicClaim": "目标英雄：莉莉娅",
+          "cachedPath": "frames/7657564076009471460/screenshot_001_aa663244-a059-460e-b227-27f6471ddf75.jpg",
+          "screenshotSha256": "db70a9561d788e0b54dc59a3bbe13a441d565574647128d27c31dc8fa4930457",
+          "finding": "主控头像与四足鹿形法师模型共同支持莉莉娅身份。"
+        }
+      }
+    },
+    "7654543108377464073": {
+      "frames": {
+        "00:15": {
+          "verdict": "supported",
+          "sourceClaim": "拉莫斯拥有5.0攻速和1000双抗",
+          "publicClaim": "目标英雄：拉莫斯",
+          "cachedPath": "frames/7654543108377464073/screenshot_001_28ede84e-ec3f-43f5-806c-625c3bf0b38c.jpg",
+          "screenshotSha256": "472030cda090f0a95aafeb9576eaa2787e4534b2430961e5de409dffeb1c470b",
+          "finding": "主控头像与带尖刺甲壳的模型共同支持拉莫斯身份；不发布未逐项核对的数值。"
+        },
+        "00:57": {
+          "verdict": "supported",
+          "sourceClaim": "装备：界弓、荆棘之甲",
+          "publicClaim": "装备：界弓、荆棘之甲",
+          "cachedPath": "frames/7654543108377464073/screenshot_006_06e468c6-8003-4da6-88cf-515d6ced285e.jpg",
+          "screenshotSha256": "614ae7340d78b913a761e85221a47a6b952efff2850b85e8cfdb3ee76f3161d8",
+          "finding": "画面文字明确写反甲与界弓，且同步放大显示两件装备图标；反甲按站点当前词典公开为荆棘之甲。"
+        }
+      }
+    },
+    "7653901559188835634": {
+      "strategyOverrides": {
+        "augments": []
+      },
+      "frames": {
+        "00:00": {
+          "verdict": "partial",
+          "sourceClaim": "Soraka 搭配了灵魄炸弹",
+          "publicClaim": "目标英雄：索拉卡；画面有紫色圆形效果，但不能确认其名称或归属",
+          "cachedPath": "frames/7653901559188835634/screenshot_000_a42b7f0e-fb1e-4e27-a55c-47b00cc2d550.jpg",
+          "screenshotSha256": "fd013599441cc283772aa7059e897981f8666f19d99bd959f709771405f356d5",
+          "finding": "画面支持索拉卡身份，但没有强化名称、HUD 或提示，不能把紫色效果认定并归因于灵魄炸弹。"
+        }
+      }
+    }
+  }
+}

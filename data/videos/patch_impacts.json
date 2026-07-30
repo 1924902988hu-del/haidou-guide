@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-07-29",
+  "patches": {
+    "26.15": {
+      "effectiveAt": "2026-07-29",
+      "sourcePublishedAt": "2026-07-28",
+      "source": "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-15-notes/",
+      "heroes": {
+        "Kindred": {
+          "status": "direct-hero-balance-change",
+          "summary": "官方 26.15 已将千珏在海克斯大乱斗的伤害输出修正从 110% 下调至 100%，且伤害修正现在覆盖装备与强化伤害；该视频发布于调整前，搭配可作线索，但不能证明调整后的强度。"
+        },
+        "Rammus": {
+          "status": "direct-recommended-item-change",
+          "summary": "官方 26.15 已加强视频明确推荐的界弓（Terminus）：晦影攻击特效从固定 30 魔法伤害改为 30（+10%额外攻击力）（+10%法术强度）；该视频发布于调整前，装备名称仍有效，但画面不能证明改动后的强度。"
+        },
+        "Soraka": {
+          "status": "direct-hero-balance-change",
+          "summary": "官方 26.15 已将索拉卡在海克斯大乱斗的治疗修正从 105% 下调至 100%；该视频发布于调整前，画面能证明当时的搭配与表现，但不能证明调整后的治疗强度。"
+        }
+      }
+    }
+  }
+}

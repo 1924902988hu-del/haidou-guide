@@ -4,15 +4,18 @@
 - site/data/index.json                首页索引(搜索昵称、定位、梯度)
 - site/data/heroes/{alias}.json       英雄详情(天赋/加点/召唤师技能/海克斯/出装)
 
-合规:海克斯强化一律不输出胜率数字(只有 hexScore 推荐度与档位);英雄胜率保留。
+合规:海克斯强化与模式装备不输出胜率或内部排序分数,只公开推荐标签;英雄胜率保留。
 """
 import os
 import re
 import sys
+import unicodedata
 import urllib.parse
 
 sys.path.insert(0, os.path.dirname(__file__))
-from common import save_json, load_json
+from common import load_json, save_json, valid_item_core_rows
+from fetch_hexdata import verify_cache_manifest
+from video_intelligence import video_is_currently_publishable
 
 ROOT = os.path.join(os.path.dirname(__file__), "..")
 RAW = os.path.join(ROOT, "data", "raw")
@@ -24,12 +27,127 @@ CD_BASE = "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/g
 
 # 图片本地化:站点只引用本地路径,fetch_images.py 按清单补齐缺失文件
 IMG_MANIFEST = {}
+PUBLIC_VIDEO_FIELDS = {
+    "analysisLabel",
+    "caveat",
+    "creator",
+    "evidence",
+    "expiresAt",
+    "heroes",
+    "id",
+    "keyPoints",
+    "patchImpact",
+    "patchMentioned",
+    "patchStatus",
+    "platform",
+    "publishedAt",
+    "strategies",
+    "strategy",
+    "summary",
+    "title",
+    "url",
+}
 
 
 def img(rel, url):
     if url:
         IMG_MANIFEST[rel] = url
     return rel
+
+
+def register_preserved_item_assets(rows, version):
+    """把同补丁回退保留的 OP.GG 核心装备重新登记到图片清单。"""
+    for row in rows:
+        for item in row:
+            item_id = item.get("id")
+            if (
+                isinstance(item_id, bool)
+                or not isinstance(item_id, int)
+                or item_id <= 0
+            ):
+                raise ValueError(f"保留的 OP.GG 核心装备 ID 无效: {item_id!r}")
+            expected_rel = f"assets/img/item/{item_id}.png"
+            if item.get("icon") != expected_rel:
+                raise ValueError(
+                    "保留的 OP.GG 核心装备图片路径无效: "
+                    f"{item.get('icon')!r}"
+                )
+            img(
+                expected_rel,
+                f"{DD_IMG}/{version}/img/item/{item_id}.png",
+            )
+    return rows
+
+
+def public_video_record(video):
+    """只把可向读者解释的字段投影到静态站点数据。"""
+    return {
+        key: value
+        for key, value in video.items()
+        if key in PUBLIC_VIDEO_FIELDS
+    }
+
+
+def public_video_availability(video):
+    """首页只需知道运行时仍可见的视频数量和版本状态。"""
+    return {
+        "expiresAt": video.get("expiresAt"),
+        "patchStatus": video.get("patchStatus"),
+    }
+
+
+def normalize_search_term(value):
+    """统一全角/半角与大小写，避免同一个搜索词产生多个二进制写法。"""
+    return unicodedata.normalize("NFKC", str(value or "")).strip().casefold()
+
+
+def finalize_index_search_terms(index_rows):
+    """移除跨英雄冲突词与无辨识度的单字母英文词。"""
+    owners = {}
+    terms_by_alias = {}
+    for row in index_rows:
+        terms = sorted({
+            term
+            for term in (
+                normalize_search_term(value)
+                for value in str(row.get("search") or "").split(",")
+            )
+            if term
+        })
+        terms_by_alias[row["alias"]] = terms
+        for term in terms:
+            owners.setdefault(term, set()).add(row["alias"])
+
+    ambiguous = {
+        term for term, aliases in owners.items()
+        if len(aliases) > 1
+    }
+    single_letter_latin = {
+        term for term in owners
+        if re.fullmatch(r"[a-z]", term)
+    }
+    disallowed = ambiguous | single_letter_latin
+    removed_occurrences = 0
+    for row in index_rows:
+        terms = terms_by_alias[row["alias"]]
+        safe_terms = [term for term in terms if term not in disallowed]
+        required = {
+            normalize_search_term(row[field])
+            for field in ("alias", "name", "epithet")
+        }
+        missing = sorted(required - set(safe_terms))
+        if missing:
+            raise ValueError(
+                f"{row['alias']}: 搜索词清理误删必要身份 {missing}"
+            )
+        removed_occurrences += len(terms) - len(safe_terms)
+        row["search"] = ",".join(safe_terms)
+    return {
+        "ambiguousTerms": len(ambiguous),
+        "singleLetterTerms": len(single_letter_latin),
+        "removedOccurrences": removed_occurrences,
+    }
+
 
 STAT_MODS = {
     5001: "成长生命值", 5005: "攻击速度", 5007: "技能急速", 5008: "自适应之力",
@@ -38,6 +156,23 @@ STAT_MODS = {
 RARITY_NORM = {"白银": "白银", "银": "白银", "黄金": "黄金", "金": "黄金", "棱彩": "棱彩"}
 ROLE_ZH = {"fighter": "战士", "mage": "法师", "assassin": "刺客",
            "marksman": "射手", "tank": "坦克", "support": "辅助"}
+
+
+def public_patch(version):
+    """16.14.1 / 16.14 等数据版本转成 Riot 对外补丁号 26.14。"""
+    match = re.fullmatch(r"16\.(\d{1,2})(?:\.\d+)?", str(version or ""))
+    if not match:
+        raise ValueError(f"无法转换来源版本: {version!r}")
+    return f"26.{match.group(1)}"
+
+
+def require_opgg_source_versions(record, expected, context):
+    """拒绝把其他 OP.GG 补丁的英雄缓存混入本轮站点快照。"""
+    actual = (record or {}).get("sourceVersions")
+    if actual != expected:
+        raise ValueError(
+            f"{context}: OP.GG 缓存版本不一致 {actual!r} != {expected!r}"
+        )
 
 
 def cd_icon(path):
@@ -68,8 +203,14 @@ def clean_augment_desc(value):
 
 
 def main():
+    # 英雄明细没有自带 buildId；先用抓取批次清单验证全部文件，拒绝混合缓存。
+    verify_cache_manifest(os.path.join(RAW, "hexdata"))
     version = load_json(os.path.join(RAW, "static_meta.json"))["ddragonVersion"]
-    game_patch = "26." + version.split(".")[1]  # 16.14.1 -> 26.14(对外补丁号)
+    game_patch = public_patch(version)
+    opgg_meta = load_json(os.path.join(RAW, "opgg", "_meta.json"))
+    opgg_versions = opgg_meta.get("sourceVersions") or {}
+    opgg_patch = public_patch(opgg_versions.get("mayhem"))
+    opgg_runes_patch = public_patch(opgg_versions.get("aram"))
 
     champs = load_json(os.path.join(RAW, "ddragon", "champion.json"))["data"]
     items_dd = load_json(os.path.join(RAW, "ddragon", "item.json"))["data"]
@@ -85,11 +226,22 @@ def main():
     stats_patch = ("26." + stats_patch_raw.split(".", 1)[1]
                    if stats_patch_raw.startswith("16.") else stats_patch_raw)
     valid_ids = set(hero_list) & set(hx_heroes)
-    video_rows = load_json(VIDEO_CATALOG).get("videos", []) if os.path.exists(VIDEO_CATALOG) else []
+    catalog_video_rows = (
+        load_json(VIDEO_CATALOG).get("videos", [])
+        if os.path.exists(VIDEO_CATALOG)
+        else []
+    )
+    video_rows = [
+        video
+        for video in catalog_video_rows
+        if video_is_currently_publishable(video)
+    ]
     videos_by_hero = {}
     for video in video_rows:
         for video_alias in video.get("heroes", []):
-            videos_by_hero.setdefault(video_alias, []).append(video)
+            videos_by_hero.setdefault(video_alias, []).append(
+                public_video_record(video)
+            )
     for video_alias in videos_by_hero:
         videos_by_hero[video_alias].sort(
             key=lambda row: (row.get("publishedAt") or "", row.get("reviewedAt") or ""),
@@ -150,6 +302,8 @@ def main():
         hx = hx_heroes.get(key)
         opgg_path = os.path.join(RAW, "opgg", f"{key}.json")
         opgg = load_json(opgg_path) if os.path.exists(opgg_path) else None
+        if opgg:
+            require_opgg_source_versions(opgg, opgg_versions, alias)
 
         # zh_CN 语义:ddragon name=称号,title=音译名;hero_list 同向
         display = hl["title"]      # 安妮
@@ -157,23 +311,32 @@ def main():
         roles = [r for r in hl.get("roles", []) if r in ROLE_ZH]
         search_terms = set()
         for kw in (hl.get("keywords") or "").split(","):
-            if kw.strip():
-                search_terms.add(kw.strip().lower())
+            term = normalize_search_term(kw)
+            if term:
+                search_terms.add(term)
         for t in hx.get("searchTerms") or []:
-            search_terms.add(t.strip().lower())
-        search_terms.update({display.lower(), epithet.lower(), alias.lower()})
+            term = normalize_search_term(t)
+            if term:
+                search_terms.add(term)
+        search_terms.update(
+            normalize_search_term(value)
+            for value in (display, epithet, alias)
+        )
 
         icon = img(f"assets/img/champion/{alias}.png", f"{DD_IMG}/{version}/img/champion/{alias}.png")
         stats = {"tier": hx.get("tier"), "winRate": hx.get("winRate"), "pickRate": hx.get("pickRate"),
                  "games": hx.get("games"), "kda": hx.get("kda")}
         hero_videos = videos_by_hero.get(alias, [])
+        video_availability = [
+            public_video_availability(video)
+            for video in hero_videos
+        ]
         index_rows.append({
-            "id": int(key), "alias": alias, "name": display, "epithet": epithet,
-            "roles": roles, "icon": icon, **stats,
+            "alias": alias, "name": display, "epithet": epithet,
+            "roles": roles, "icon": icon,
+            "tier": stats["tier"], "winRate": stats["winRate"],
             "search": ",".join(sorted(search_terms)),
-            "videoCount": len(hero_videos),
-            "currentVideoCount": sum(v.get("patchStatus") == "current" for v in hero_videos),
-            "latestVideoAt": max((v.get("publishedAt") or "" for v in hero_videos), default=""),
+            "videoAvailability": video_availability,
         })
 
         # ---- 详情 ----
@@ -199,7 +362,7 @@ def main():
         augments = []
         for row in hx_aug_rows[:12]:
             ref = aug_ref(row["augmentId"], {
-                "hexScore": row.get("hexScore"), "hexLabel": row.get("hexLabel"),
+                "hexLabel": row.get("hexLabel"),
                 "opgg": int(row["augmentId"]) in opgg_aug_ids,
             })
             if ref:
@@ -216,7 +379,7 @@ def main():
                        key=lambda t: (t.get("winRateTier") or 9, -(t.get("games") or 0)))[:6]
         combos = [{
             "augments": [aug_ref(a) for a in t.get("augmentIds", []) if aug_ref(a)],
-            "tier": t.get("winRateTier"), "games": t.get("games"),
+            "games": t.get("games"),
         } for t in trios]
 
         formula = hx_formula.get(key) or {}
@@ -226,22 +389,38 @@ def main():
             seen = set()
             return [x for x in seq if not (x in seen or seen.add(x))]
 
-        opgg_core_rows = [[item_ref(i) for i in row] for row in m.get("items", {}).get("cores", [])[:3]]
-        existing_core_rows = (existing_site.get("items") or {}).get("opggCores") or []
-        existing_patch = (existing_site.get("patch") or {}).get("game")
+        raw_core_rows = valid_item_core_rows(
+            m.get("items", {}).get("cores", [])
+        )
+        opgg_core_rows = [
+            [item_ref(i) for i in row]
+            for row in raw_core_rows[:3]
+        ]
+        existing_core_rows = valid_item_core_rows(
+            (existing_site.get("items") or {}).get("opggCores") or []
+        )
+        existing_patch = (existing_site.get("patch") or {}).get("opggGame")
         # 同补丁的缓存响应偶尔只返回部分组合。新结果更少时保留已发布的完整集合，
         # 防止视频目录重建顺带把正常攻略数据回退。
-        if existing_patch == game_patch and len(opgg_core_rows) < len(existing_core_rows):
-            opgg_core_rows = existing_core_rows
+        if existing_patch == opgg_patch and len(opgg_core_rows) < len(existing_core_rows):
+            opgg_core_rows = register_preserved_item_assets(
+                existing_core_rows,
+                version,
+            )
 
         detail = {
-            "id": int(key), "alias": alias, "name": display, "epithet": epithet,
-            "roles": roles, "icon": icon,
-            "splash": f"{DD_IMG.replace('/cdn', '')}/img/champion/splash/{alias}_0.jpg",
-            "patch": {"game": game_patch, "statsGame": stats_patch,
+            "name": display, "epithet": epithet, "roles": roles, "icon": icon,
+            "patch": {"game": game_patch, "opggGame": opgg_patch,
+                      "opggRunes": opgg_runes_patch, "statsGame": stats_patch,
                       "ddragon": version, "hexdataDate": hx_build.get("reportDate")},
             "stats": stats,
-            "runes": {"pages": rune_pages, "source": "op.gg 极地大乱斗(海克斯模式无独立天赋统计,思路通用)"},
+            "runes": {
+                "pages": rune_pages,
+                "source": (
+                    f"op.gg 极地大乱斗 {opgg_runes_patch}"
+                    "(海克斯模式无独立天赋统计,思路通用)"
+                ),
+            },
             "skills": {"priority": m.get("skills", {}).get("priority", []),
                        "sequence": m.get("skills", {}).get("sequence", [])},
             "spells": [[spell_map.get(s) for s in pair if spell_map.get(s)] for pair in m.get("spells", [])[:2]],
@@ -253,16 +432,18 @@ def main():
                 "core": [item_ref(i["id"], i.get("name")) for i in formula.get("coreItems", [])],
                 "boots": [item_ref(i) for i in uniq(m.get("items", {}).get("boots", []))[:3]],
                 "opggCores": opgg_core_rows,
-                "hexTop": [{"item": item_ref(r["itemId"], r.get("itemName")), "hexLabel": r.get("hexLabel"),
-                            "hexScore": r.get("hexScore")} for r in hx_items[:8]],
+                "hexTop": [{
+                    "item": item_ref(r["itemId"], r.get("itemName")),
+                    "hexLabel": r.get("hexLabel"),
+                } for r in hx_items[:8]],
             },
             "douyinUrl": "https://www.douyin.com/search/" + urllib.parse.quote(f"{display} 海克斯大乱斗"),
             "videos": hero_videos,
-            "sources": {"opgg": bool(opgg), "hexdata": True},
         }
         save_json(os.path.join(SITE_DATA, "heroes", f"{alias}.json"), detail)
         written += 1
 
+    search_cleanup = finalize_index_search_terms(index_rows)
     expected_files = {f"{r['alias']}.json" for r in index_rows}
     hero_dir = os.path.join(SITE_DATA, "heroes")
     if os.path.isdir(hero_dir):
@@ -272,12 +453,19 @@ def main():
 
     index_rows.sort(key=lambda r: ((r["tier"] or 9), -(r["winRate"] or 0)))
     save_json(os.path.join(SITE_DATA, "index.json"), {
-        "patch": {"game": game_patch, "statsGame": stats_patch, "ddragon": version,
-                  "hexdataDate": hx_build.get("reportDate")},
+        "patch": {"game": game_patch, "opggGame": opgg_patch,
+                  "opggRunes": opgg_runes_patch, "statsGame": stats_patch,
+                  "ddragon": version, "hexdataDate": hx_build.get("reportDate")},
         "heroes": index_rows,
     })
     save_json(os.path.join(RAW, "image_manifest.json"), IMG_MANIFEST)
     print(f"index: {len(index_rows)} heroes, details written: {written}, images in manifest: {len(IMG_MANIFEST)}")
+    print(
+        "搜索词清理:"
+        f" 跨英雄冲突 {search_cleanup['ambiguousTerms']} 个,"
+        f" 单字母英文 {search_cleanup['singleLetterTerms']} 个,"
+        f" 删除出现 {search_cleanup['removedOccurrences']} 次"
+    )
 
     # 自检:昵称索引必须包含"女枪"
     blob = ",".join(r["search"] for r in index_rows)

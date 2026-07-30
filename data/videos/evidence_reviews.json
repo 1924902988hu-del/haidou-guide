@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-07-29",
+  "reviewType": "human-supervised-source-review",
+  "videos": {
+    "7661195910239489323": {
+      "evidence": [
+        {
+          "source": {
+            "timestamp": "00:09",
+            "kind": "subtitle",
+            "claim": "叠角龙能帮你多跌被动"
+          },
+          "verdict": "unsupported",
+          "transcript": {
+            "taskId": "573b1451-2c36-4c31-a917-405846c21059",
+            "sha256": "3c350607d557d0a9a3bcbca6d3f410e5f1a61c3a2198b7c73d0ace14db19cf90",
+            "segment": {
+              "start": 12.92,
+              "end": 14.4,
+              "text": "碟角龙能帮你多跌被动"
+            }
+          },
+          "finding": "原始 ASR 在约 00:13 写作“碟角龙”，00:09 实际语音与画面均不是该强化；无法仅凭这一段把标准名“叠角龙”作为确定视频结论。"
+        },
+        {
+          "source": {
+            "timestamp": "00:15",
+            "kind": "subtitle",
+            "claim": "蛋白粉奶昔能根据你的双下提供治疗强度"
+          },
+          "verdict": "supported",
+          "public": {
+            "timestamp": "00:15",
+            "kind": "audio",
+            "claim": "强化：蛋白粉奶昔"
+          },
+          "transcript": {
+            "taskId": "573b1451-2c36-4c31-a917-405846c21059",
+            "sha256": "3c350607d557d0a9a3bcbca6d3f410e5f1a61c3a2198b7c73d0ace14db19cf90",
+            "segment": {
+              "start": 14.4,
+              "end": 16.240000000000002,
+              "text": "蛋白粉奶昔能根据你的双下"
+            }
+          },
+          "finding": "原始 ASR 明确念出蛋白粉奶昔；同时间点持久化画面也显示该强化名称。"
+        },
+        {
+          "source": {
+            "timestamp": "00:21",
+            "kind": "subtitle",
+            "claim": "锤石分分中5.0攻速"
+          },
+          "verdict": "supported",
+          "public": {
+            "timestamp": "00:21",
+            "kind": "frame",
+            "claim": "目标英雄：锤石"
+          },
+          "finding": "00:21 持久化画面顶部标题与大字幕均明确写锤石；公开结论改绑画面，不再把生成标签称为字幕。"
+        }
+      ]
+    },
+    "7660904774895783231": {
+      "evidence": [
+        {
+          "source": {
+            "timestamp": "00:00",
+            "kind": "subtitle",
+            "claim": "永恩与亚索在游戏中有相似的技能机制。"
+          },
+          "verdict": "partial",
+          "public": {
+            "timestamp": "00:00",
+            "kind": "audio",
+            "claim": "视频同时讲永恩与亚索（包含永恩）"
+          },
+          "transcript": {
+            "taskId": "ab35e537-7ae8-4563-a637-e650c3e02cc0",
+            "sha256": "ea524fefd60fbdd498837618de2a2095bd8e6a300ffb9121461f8bcc8315dad5",
+            "segment": {
+              "start": 0.0,
+              "end": 4.32,
+              "text": "谈点 海斗强势英雄玩法 今天要讲的是 让人兄弟 永恩亚索"
+            }
+          },
+          "finding": "原始 ASR 明确同时念出永恩、亚索；保留永恩归属但不再暗示视频只讲永恩。"
+        }
+      ]
+    },
+    "7654543108377464073": {
+      "evidence": [
+        {
+          "source": {
+            "timestamp": "00:21",
+            "kind": "subtitle",
+            "claim": "装备选择为界弓和反甲"
+          },
+          "verdict": "partial",
+          "public": {
+            "timestamp": "00:57",
+            "kind": "frame",
+            "claim": "装备：界弓、荆棘之甲"
+          },
+          "finding": "00:21 是商店总览且字幕在讲飞身踢；00:57 画面文字和放大的装备图标才明确支持反甲（荆棘之甲）与界弓。"
+        }
+      ]
+    }
+  }
+}

@@ -1,99 +1,2732 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-07-29",
+  "updatedAt": "2026-07-30",
   "videos": [
     {
-      "id": "douyin-7602122505302088881",
+      "id": "douyin-7668023826030103834",
       "platform": "抖音",
-      "url": "https://www.douyin.com/video/7602122505302088881",
+      "url": "https://www.douyin.com/video/7668023826030103834",
       "heroes": [
-        "Blitzcrank"
+        "Amumu"
       ],
-      "title": "虚幻武器机器人：雷电与控制触发思路",
-      "creator": "乱斗-不良人",
-      "publishedAt": "2026-02-02",
-      "durationSeconds": 67,
-      "analysisStatus": "visual-reviewed",
-      "analysisLabel": "已看画面并核对字幕",
-      "reviewedAt": "2026-07-29",
+      "title": "阿木木 视频证据：高压锅",
+      "creator": "脆脆大炮didi（海斗）",
+      "publishedAt": "2026-07-29",
+      "expiresAt": "2026-09-12",
+      "durationSeconds": 576,
+      "discoveredAt": "2026-07-30",
+      "analysisStatus": "multimodal-reviewed",
+      "analysisLabel": "AI 提炼 · 证据：画面、字幕",
+      "reviewedAt": "2026-07-30",
       "patchStatus": "needs-game-check",
-      "summary": "视频主张机器人拿到“虚幻武器”后，可围绕雷电、攻击特效和控制形成连续触发；装备方向优先技能急速。",
+      "patchMentioned": null,
+      "summary": "时间戳证据已明确记录强化：高压锅；装备：心之钢；符文：余震；加点：Q；召唤师技能：闪现。未显示的打法、理由和版本适用性不作推断。",
       "strategy": {
+        "id": "build-1",
+        "label": "主方案",
         "augments": [
           {
-            "name": "虚幻武器",
-            "priority": "核心",
-            "reason": "让技能施加攻击特效，形成后续连锁触发。"
+            "name": "高压锅"
           }
         ],
         "items": [
           {
-            "name": "黄昏与黎明",
-            "order": 1,
-            "reason": "视频最终展示的完整装备方案。"
+            "name": "心之钢"
+          }
+        ],
+        "runes": [
+          {
+            "name": "余震"
+          }
+        ],
+        "skillOrder": [
+          "Q"
+        ],
+        "summonerSpells": [
+          "闪现"
+        ],
+        "playstyle": []
+      },
+      "strategies": [
+        {
+          "id": "build-1",
+          "label": "主方案",
+          "augments": [
+            {
+              "name": "高压锅"
+            }
+          ],
+          "items": [
+            {
+              "name": "心之钢"
+            }
+          ],
+          "runes": [
+            {
+              "name": "余震"
+            }
+          ],
+          "skillOrder": [
+            "Q"
+          ],
+          "summonerSpells": [
+            "闪现"
+          ],
+          "playstyle": []
+        }
+      ],
+      "evidence": [
+        {
+          "timestamp": "00:48",
+          "kind": "frame",
+          "strategyId": "build-1",
+          "claim": "选择高压锅作为海克斯强化。"
+        },
+        {
+          "timestamp": "02:00",
+          "kind": "frame",
+          "strategyId": "build-1",
+          "claim": "购买心之钢以提升生命值。"
+        },
+        {
+          "timestamp": "03:27",
+          "kind": "frame",
+          "strategyId": "build-1",
+          "claim": "选择余震作为主要符文。"
+        },
+        {
+          "timestamp": "01:06",
+          "kind": "subtitle",
+          "strategyId": "build-1",
+          "claim": "主升Q技能。"
+        },
+        {
+          "timestamp": "01:42",
+          "kind": "frame",
+          "strategyId": "build-1",
+          "claim": "使用闪现作为召唤师技能。"
+        },
+        {
+          "timestamp": "00:00",
+          "kind": "frame",
+          "claim": "画面文字出现“阿木木”，对应目标英雄阿木木（Amumu）",
+          "source": "local-vision-ocr"
+        }
+      ],
+      "confidence": 0.85,
+      "engagement": {
+        "likes": 1,
+        "comments": 0,
+        "shares": 0,
+        "plays": 0
+      },
+      "caveat": "视频中未展示完整的符文和装备细节，部分内容需根据实战情况调整。 视频未明确证明适用于站点客户端资料快照 26.15。"
+    },
+    {
+      "id": "douyin-7667983808871845130",
+      "platform": "抖音",
+      "url": "https://www.douyin.com/video/7667983808871845130",
+      "heroes": [
+        "Rell"
+      ],
+      "title": "芮尔 视频证据：坦克引擎",
+      "creator": "海斗小助手",
+      "publishedAt": "2026-07-29",
+      "expiresAt": "2026-09-12",
+      "durationSeconds": 112,
+      "discoveredAt": "2026-07-30",
+      "analysisStatus": "multimodal-reviewed",
+      "analysisLabel": "AI 提炼 · 证据：画面、字幕",
+      "reviewedAt": "2026-07-30",
+      "patchStatus": "needs-game-check",
+      "patchMentioned": null,
+      "summary": "时间戳证据已明确记录坦克流（强化：坦克引擎；装备：心之钢、狂徒铠甲）；残忍坦克流（强化：残忍；装备：心之钢、狂徒铠甲）。未显示的打法、理由和版本适用性不作推断。",
+      "strategy": {
+        "id": "build-1",
+        "label": "坦克流",
+        "augments": [
+          {
+            "name": "坦克引擎"
+          }
+        ],
+        "items": [
+          {
+            "name": "心之钢"
           },
           {
-            "name": "残疫",
-            "order": 2,
-            "reason": "视频最终展示的完整装备方案。"
-          },
-          {
-            "name": "兰德里的折磨",
-            "order": 3,
-            "reason": "视频最终展示的完整装备方案。"
-          },
-          {
-            "name": "影焰",
-            "order": 4,
-            "reason": "视频最终展示的完整装备方案。"
-          },
-          {
-            "name": "蜕生",
-            "order": 5,
-            "reason": "视频最终展示的完整装备方案。"
-          },
-          {
-            "name": "灭世者的死亡之帽",
-            "order": 6,
-            "reason": "视频最终展示的完整装备方案。"
+            "name": "狂徒铠甲"
           }
         ],
         "runes": [],
         "skillOrder": [],
         "summonerSpells": [],
-        "playstyle": [
-          "技能触发攻击特效后继续触发雷电类效果，以控制频率和连锁效果为核心。"
-        ]
+        "playstyle": []
       },
-      "evidence": [
+      "strategies": [
         {
-          "timestamp": "00:28",
-          "kind": "subtitle",
-          "claim": "作者说明机器人技能可以触发一道雷电。"
+          "id": "build-1",
+          "label": "坦克流",
+          "augments": [
+            {
+              "name": "坦克引擎"
+            }
+          ],
+          "items": [
+            {
+              "name": "心之钢"
+            },
+            {
+              "name": "狂徒铠甲"
+            }
+          ],
+          "runes": [],
+          "skillOrder": [],
+          "summonerSpells": [],
+          "playstyle": []
         },
         {
-          "timestamp": "00:32",
-          "kind": "frame",
-          "claim": "画面明确展示“虚幻武器”强化及其技能施加攻击特效的说明。"
-        },
-        {
-          "timestamp": "00:40",
-          "kind": "subtitle",
-          "claim": "作者说明攻击特效可以继续触发雷电，构成连锁。"
-        },
-        {
-          "timestamp": "01:04",
-          "kind": "frame",
-          "claim": "画面展示黄昏与黎明、残疫、兰德里的折磨、影焰、蜕生和灭世者的死亡之帽六件装备。"
+          "id": "build-2",
+          "label": "残忍坦克流",
+          "augments": [
+            {
+              "name": "残忍"
+            }
+          ],
+          "items": [
+            {
+              "name": "心之钢"
+            },
+            {
+              "name": "狂徒铠甲"
+            }
+          ],
+          "runes": [],
+          "skillOrder": [],
+          "summonerSpells": [],
+          "playstyle": []
         }
       ],
-      "confidence": 0.88,
-      "keyPoints": [
-        "核心强化是“虚幻武器”，不是无条件适用的固定出装。",
-        "思路重点是让技能与雷电类效果持续触发攻击特效，放大机器人的控制频率。",
-        "装备建议偏技能急速；具体数值、触发关系和当前可用装备仍需以游戏内为准。"
+      "evidence": [
+        {
+          "timestamp": "00:00",
+          "kind": "subtitle",
+          "claim": "目标英雄：芮尔"
+        },
+        {
+          "timestamp": "00:15",
+          "kind": "subtitle",
+          "claim": "坦克流·强化：坦克引擎",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "01:00",
+          "kind": "subtitle",
+          "claim": "残忍坦克流·强化：残忍",
+          "strategyId": "build-2"
+        },
+        {
+          "timestamp": "00:42",
+          "kind": "frame",
+          "claim": "坦克流·装备：心之钢、狂徒铠甲",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "01:21",
+          "kind": "frame",
+          "claim": "残忍坦克流·强化：残忍；残忍坦克流·装备：心之钢、狂徒铠甲",
+          "strategyId": "build-2"
+        },
+        {
+          "timestamp": "01:42",
+          "kind": "subtitle",
+          "claim": "目标英雄：芮尔"
+        }
       ],
-      "caveat": "视频早于当前数据版本，属于可尝试的玩法思路，不代表 26.15 已验证答案。"
+      "confidence": 0.9,
+      "engagement": {
+        "likes": 1,
+        "comments": 0,
+        "shares": 0,
+        "plays": 0
+      },
+      "caveat": "视频中其他识别结果未通过当前词典或逐项时间戳校验，已省略。 视频未明确证明适用于站点客户端资料快照 26.15。"
+    },
+    {
+      "id": "douyin-7667417493158668196",
+      "platform": "抖音",
+      "url": "https://www.douyin.com/video/7667417493158668196",
+      "heroes": [
+        "LeeSin"
+      ],
+      "title": "李青 视频证据：牙仙子",
+      "creator": "乱斗螃蟹",
+      "publishedAt": "2026-07-28",
+      "expiresAt": "2026-09-11",
+      "durationSeconds": 92,
+      "discoveredAt": "2026-07-30",
+      "analysisStatus": "multimodal-reviewed",
+      "analysisLabel": "AI 提炼 · 证据：画面、字幕",
+      "reviewedAt": "2026-07-30",
+      "patchStatus": "needs-game-check",
+      "patchMentioned": null,
+      "summary": "时间戳证据已明确记录强化：牙仙子。未显示的打法、理由和版本适用性不作推断。",
+      "strategy": {
+        "id": "build-1",
+        "label": "主方案",
+        "augments": [
+          {
+            "name": "牙仙子"
+          }
+        ],
+        "items": [],
+        "runes": [],
+        "skillOrder": [],
+        "summonerSpells": [],
+        "playstyle": []
+      },
+      "strategies": [
+        {
+          "id": "build-1",
+          "label": "主方案",
+          "augments": [
+            {
+              "name": "牙仙子"
+            }
+          ],
+          "items": [],
+          "runes": [],
+          "skillOrder": [],
+          "summonerSpells": [],
+          "playstyle": []
+        }
+      ],
+      "evidence": [
+        {
+          "timestamp": "00:15",
+          "kind": "frame",
+          "claim": "该时间点已核对，未形成可公开的搭配结论"
+        },
+        {
+          "timestamp": "00:24",
+          "kind": "subtitle",
+          "claim": "该时间点已核对，未形成可公开的搭配结论"
+        },
+        {
+          "timestamp": "01:09",
+          "kind": "frame",
+          "claim": "主方案·强化：牙仙子"
+        },
+        {
+          "timestamp": "00:24",
+          "kind": "frame",
+          "claim": "目标英雄：李青"
+        }
+      ],
+      "confidence": 0.85,
+      "engagement": {
+        "likes": 1009,
+        "comments": 28,
+        "shares": 844,
+        "plays": 0
+      },
+      "caveat": "视频中其他识别结果未通过当前词典或逐项时间戳校验，已省略。 视频未明确证明适用于站点客户端资料快照 26.15。"
+    },
+    {
+      "id": "douyin-7666575729266705381",
+      "platform": "抖音",
+      "url": "https://www.douyin.com/video/7666575729266705381",
+      "heroes": [
+        "Kindred"
+      ],
+      "title": "千珏 视频证据：利刃华尔兹",
+      "creator": "叶成帷玩LOL",
+      "publishedAt": "2026-07-25",
+      "expiresAt": "2026-09-08",
+      "durationSeconds": 122,
+      "discoveredAt": "2026-07-30",
+      "analysisStatus": "multimodal-reviewed",
+      "analysisLabel": "AI 提炼 · 证据：画面",
+      "reviewedAt": "2026-07-30",
+      "patchStatus": "needs-game-check",
+      "patchMentioned": null,
+      "summary": "时间戳证据已明确记录强化：利刃华尔兹、巨人杀手。未显示的打法、理由和版本适用性不作推断。",
+      "strategy": {
+        "id": "build-1",
+        "label": "主方案",
+        "augments": [
+          {
+            "name": "利刃华尔兹"
+          },
+          {
+            "name": "巨人杀手"
+          }
+        ],
+        "items": [],
+        "runes": [],
+        "skillOrder": [],
+        "summonerSpells": [],
+        "playstyle": []
+      },
+      "strategies": [
+        {
+          "id": "build-1",
+          "label": "主方案",
+          "augments": [
+            {
+              "name": "利刃华尔兹"
+            },
+            {
+              "name": "巨人杀手"
+            }
+          ],
+          "items": [],
+          "runes": [],
+          "skillOrder": [],
+          "summonerSpells": [],
+          "playstyle": []
+        }
+      ],
+      "evidence": [
+        {
+          "timestamp": "00:00",
+          "kind": "frame",
+          "claim": "主方案·强化：利刃华尔兹、巨人杀手"
+        },
+        {
+          "timestamp": "01:54",
+          "kind": "frame",
+          "claim": "目标英雄：千珏"
+        }
+      ],
+      "confidence": 0.8,
+      "engagement": {
+        "likes": 0,
+        "comments": 0,
+        "shares": 0,
+        "plays": 0
+      },
+      "caveat": "视频中其他识别结果未通过当前词典或逐项时间戳校验，已省略。 视频未明确证明适用于站点客户端资料快照 26.15。 官方 26.15 已将千珏在海克斯大乱斗的伤害输出修正从 110% 下调至 100%，且伤害修正现在覆盖装备与强化伤害；该视频发布于调整前，搭配可作线索，但不能证明调整后的强度。",
+      "patchImpact": {
+        "patch": "26.15",
+        "effectiveAt": "2026-07-29",
+        "sourcePublishedAt": "2026-07-28",
+        "source": "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-15-notes/",
+        "status": "direct-hero-balance-change",
+        "summary": "官方 26.15 已将千珏在海克斯大乱斗的伤害输出修正从 110% 下调至 100%，且伤害修正现在覆盖装备与强化伤害；该视频发布于调整前，搭配可作线索，但不能证明调整后的强度。"
+      },
+      "frameReview": {
+        "status": "pixel-reviewed",
+        "reviewedAt": "2026-07-29",
+        "reviewType": "human-supervised-pixel-review",
+        "reviewedFrames": 2
+      }
+    },
+    {
+      "id": "douyin-7666507128705682731",
+      "platform": "抖音",
+      "url": "https://www.douyin.com/video/7666507128705682731",
+      "heroes": [
+        "Ambessa"
+      ],
+      "title": "安蓓萨 视频证据：牙仙子",
+      "creator": "山民兔",
+      "publishedAt": "2026-07-25",
+      "expiresAt": "2026-09-08",
+      "durationSeconds": 233,
+      "discoveredAt": "2026-07-30",
+      "analysisStatus": "multimodal-reviewed",
+      "analysisLabel": "AI 提炼 · 证据：画面",
+      "reviewedAt": "2026-07-30",
+      "patchStatus": "needs-game-check",
+      "patchMentioned": null,
+      "summary": "时间戳证据已明确记录强化：牙仙子、穿针引线、大力。未显示的打法、理由和版本适用性不作推断。",
+      "strategy": {
+        "id": "build-1",
+        "label": "主方案",
+        "augments": [
+          {
+            "name": "牙仙子"
+          },
+          {
+            "name": "穿针引线"
+          },
+          {
+            "name": "大力"
+          }
+        ],
+        "items": [],
+        "runes": [],
+        "skillOrder": [],
+        "summonerSpells": [],
+        "playstyle": []
+      },
+      "strategies": [
+        {
+          "id": "build-1",
+          "label": "主方案",
+          "augments": [
+            {
+              "name": "牙仙子"
+            },
+            {
+              "name": "穿针引线"
+            },
+            {
+              "name": "大力"
+            }
+          ],
+          "items": [],
+          "runes": [],
+          "skillOrder": [],
+          "summonerSpells": [],
+          "playstyle": []
+        }
+      ],
+      "evidence": [
+        {
+          "timestamp": "00:00",
+          "kind": "frame",
+          "claim": "目标英雄：安蓓萨"
+        },
+        {
+          "timestamp": "00:06",
+          "kind": "frame",
+          "claim": "主方案·强化：牙仙子",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:30",
+          "kind": "frame",
+          "claim": "主方案·强化：穿针引线",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:57",
+          "kind": "frame",
+          "claim": "主方案·强化：大力",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "01:06",
+          "kind": "frame",
+          "claim": "该时间点已核对，未形成可公开的搭配结论",
+          "strategyId": "build-1"
+        }
+      ],
+      "confidence": 0.85,
+      "engagement": {
+        "likes": 53,
+        "comments": 1,
+        "shares": 1,
+        "plays": 0
+      },
+      "caveat": "视频中其他识别结果未通过当前词典或逐项时间戳校验，已省略。 视频未明确证明适用于站点客户端资料快照 26.15。"
+    },
+    {
+      "id": "douyin-7665292087830629651",
+      "platform": "抖音",
+      "url": "https://www.douyin.com/video/7665292087830629651",
+      "heroes": [
+        "Teemo"
+      ],
+      "title": "提莫 视频证据：活力再生",
+      "creator": "乱斗百晓生",
+      "publishedAt": "2026-07-22",
+      "expiresAt": "2026-09-05",
+      "durationSeconds": 132,
+      "discoveredAt": "2026-07-30",
+      "analysisStatus": "multimodal-reviewed",
+      "analysisLabel": "AI 提炼 · 证据：画面",
+      "reviewedAt": "2026-07-30",
+      "patchStatus": "needs-game-check",
+      "patchMentioned": null,
+      "summary": "时间戳证据已明确记录强化：活力再生。未显示的打法、理由和版本适用性不作推断。",
+      "strategy": {
+        "id": "build-1",
+        "label": "主方案",
+        "augments": [
+          {
+            "name": "活力再生"
+          }
+        ],
+        "items": [],
+        "runes": [],
+        "skillOrder": [],
+        "summonerSpells": [],
+        "playstyle": []
+      },
+      "strategies": [
+        {
+          "id": "build-1",
+          "label": "主方案",
+          "augments": [
+            {
+              "name": "活力再生"
+            }
+          ],
+          "items": [],
+          "runes": [],
+          "skillOrder": [],
+          "summonerSpells": [],
+          "playstyle": []
+        }
+      ],
+      "evidence": [
+        {
+          "timestamp": "00:06",
+          "kind": "frame",
+          "claim": "目标英雄：提莫",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:45",
+          "kind": "frame",
+          "claim": "该时间点已核对，未形成可公开的搭配结论",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "01:30",
+          "kind": "frame",
+          "claim": "主方案·强化：活力再生",
+          "strategyId": "build-1"
+        }
+      ],
+      "confidence": 0.85,
+      "engagement": {
+        "likes": 5761,
+        "comments": 390,
+        "shares": 1927,
+        "plays": 0
+      },
+      "caveat": "视频中其他识别结果未通过当前词典或逐项时间戳校验，已省略。 视频未明确证明适用于站点客户端资料快照 26.15。"
+    },
+    {
+      "id": "douyin-7661885540770397937",
+      "platform": "抖音",
+      "url": "https://www.douyin.com/video/7661885540770397937",
+      "heroes": [
+        "Jinx"
+      ],
+      "title": "金克丝 视频证据：暴击律动",
+      "creator": "LOL --蛋妮维雅(冰鸟)",
+      "publishedAt": "2026-07-13",
+      "expiresAt": "2026-08-27",
+      "durationSeconds": 131,
+      "discoveredAt": "2026-07-30",
+      "analysisStatus": "multimodal-reviewed",
+      "analysisLabel": "AI 提炼 · 证据：画面",
+      "reviewedAt": "2026-07-30",
+      "patchStatus": "needs-game-check",
+      "patchMentioned": null,
+      "summary": "时间戳证据已明确记录强化：暴击律动、连拨击锤。未显示的打法、理由和版本适用性不作推断。",
+      "strategy": {
+        "id": "build-1",
+        "label": "主方案",
+        "augments": [
+          {
+            "name": "暴击律动"
+          },
+          {
+            "name": "连拨击锤"
+          }
+        ],
+        "items": [],
+        "runes": [],
+        "skillOrder": [],
+        "summonerSpells": [],
+        "playstyle": []
+      },
+      "strategies": [
+        {
+          "id": "build-1",
+          "label": "主方案",
+          "augments": [
+            {
+              "name": "暴击律动"
+            },
+            {
+              "name": "连拨击锤"
+            }
+          ],
+          "items": [],
+          "runes": [],
+          "skillOrder": [],
+          "summonerSpells": [],
+          "playstyle": []
+        }
+      ],
+      "evidence": [
+        {
+          "timestamp": "00:18",
+          "kind": "frame",
+          "claim": "主方案·强化：暴击律动、连拨击锤",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "01:06",
+          "kind": "frame",
+          "claim": "目标英雄：金克丝",
+          "strategyId": "build-1"
+        }
+      ],
+      "confidence": 0.7,
+      "engagement": {
+        "likes": 136,
+        "comments": 29,
+        "shares": 8,
+        "plays": 0
+      },
+      "caveat": "视频中其他识别结果未通过当前词典或逐项时间戳校验，已省略。 视频未明确证明适用于站点客户端资料快照 26.15。"
+    },
+    {
+      "id": "douyin-7661674265019682086",
+      "platform": "抖音",
+      "url": "https://www.douyin.com/video/7661674265019682086",
+      "heroes": [
+        "Quinn"
+      ],
+      "title": "奎因 视频证据：收集者",
+      "creator": "海斗小助手",
+      "publishedAt": "2026-07-12",
+      "expiresAt": "2026-08-26",
+      "durationSeconds": 130,
+      "discoveredAt": "2026-07-30",
+      "analysisStatus": "multimodal-reviewed",
+      "analysisLabel": "AI 提炼 · 证据：画面、字幕",
+      "reviewedAt": "2026-07-30",
+      "patchStatus": "needs-game-check",
+      "patchMentioned": null,
+      "summary": "时间戳证据已明确记录主方案（装备：收集者、无尽之刃、多米尼克领主的致意）；暴穿流玩法（装备：收集者、无尽之刃）。未显示的打法、理由和版本适用性不作推断。",
+      "strategy": {
+        "id": "build-1",
+        "label": "主方案",
+        "augments": [],
+        "items": [
+          {
+            "name": "收集者"
+          },
+          {
+            "name": "无尽之刃"
+          },
+          {
+            "name": "多米尼克领主的致意"
+          }
+        ],
+        "runes": [],
+        "skillOrder": [],
+        "summonerSpells": [],
+        "playstyle": []
+      },
+      "strategies": [
+        {
+          "id": "build-1",
+          "label": "主方案",
+          "augments": [],
+          "items": [
+            {
+              "name": "收集者"
+            },
+            {
+              "name": "无尽之刃"
+            },
+            {
+              "name": "多米尼克领主的致意"
+            }
+          ],
+          "runes": [],
+          "skillOrder": [],
+          "summonerSpells": [],
+          "playstyle": []
+        },
+        {
+          "id": "build-2",
+          "label": "暴穿流玩法",
+          "augments": [],
+          "items": [
+            {
+              "name": "收集者"
+            },
+            {
+              "name": "无尽之刃"
+            }
+          ],
+          "runes": [],
+          "skillOrder": [],
+          "summonerSpells": [],
+          "playstyle": []
+        }
+      ],
+      "evidence": [
+        {
+          "timestamp": "00:11",
+          "kind": "subtitle",
+          "claim": "目标英雄：奎因",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:33",
+          "kind": "frame",
+          "claim": "主方案·装备：收集者、无尽之刃、多米尼克领主的致意",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "01:00",
+          "kind": "frame",
+          "claim": "暴穿流玩法·装备：无尽之刃",
+          "strategyId": "build-2"
+        },
+        {
+          "timestamp": "01:11",
+          "kind": "frame",
+          "claim": "暴穿流玩法·装备：收集者、无尽之刃",
+          "strategyId": "build-2"
+        }
+      ],
+      "confidence": 0.85,
+      "engagement": {
+        "likes": 8,
+        "comments": 0,
+        "shares": 0,
+        "plays": 0
+      },
+      "caveat": "视频中其他识别结果未通过当前词典或逐项时间戳校验，已省略。 视频未明确证明适用于站点客户端资料快照 26.15。"
+    },
+    {
+      "id": "douyin-7661195910239489323",
+      "platform": "抖音",
+      "url": "https://www.douyin.com/video/7661195910239489323",
+      "heroes": [
+        "Thresh"
+      ],
+      "title": "锤石 视频证据：蛋白粉奶昔",
+      "creator": "可劲造",
+      "publishedAt": "2026-07-11",
+      "expiresAt": "2026-08-25",
+      "durationSeconds": 32,
+      "discoveredAt": "2026-07-30",
+      "analysisStatus": "multimodal-reviewed",
+      "analysisLabel": "AI 提炼 · 证据：画面、语音",
+      "reviewedAt": "2026-07-30",
+      "patchStatus": "needs-game-check",
+      "patchMentioned": null,
+      "summary": "时间戳证据已明确记录强化：蛋白粉奶昔。未显示的打法、理由和版本适用性不作推断。",
+      "strategy": {
+        "id": "build-1",
+        "label": "主方案",
+        "augments": [
+          {
+            "name": "蛋白粉奶昔"
+          }
+        ],
+        "items": [],
+        "runes": [],
+        "skillOrder": [],
+        "summonerSpells": [],
+        "playstyle": []
+      },
+      "strategies": [
+        {
+          "id": "build-1",
+          "label": "主方案",
+          "augments": [
+            {
+              "name": "蛋白粉奶昔"
+            }
+          ],
+          "items": [],
+          "runes": [],
+          "skillOrder": [],
+          "summonerSpells": [],
+          "playstyle": []
+        }
+      ],
+      "evidence": [
+        {
+          "timestamp": "00:15",
+          "kind": "audio",
+          "claim": "主方案·强化：蛋白粉奶昔"
+        },
+        {
+          "timestamp": "00:15",
+          "kind": "frame",
+          "claim": "目标英雄：锤石；主方案·强化：蛋白粉奶昔"
+        },
+        {
+          "timestamp": "00:21",
+          "kind": "frame",
+          "claim": "目标英雄：锤石"
+        }
+      ],
+      "confidence": 0.8,
+      "engagement": {
+        "likes": 421,
+        "comments": 13,
+        "shares": 36,
+        "plays": 0
+      },
+      "caveat": "视频中其他识别结果未通过当前词典或逐项时间戳校验，已省略。 视频未明确证明适用于站点客户端资料快照 26.15。",
+      "frameReview": {
+        "status": "pixel-reviewed",
+        "reviewedAt": "2026-07-29",
+        "reviewType": "human-supervised-pixel-review",
+        "reviewedFrames": 2
+      },
+      "evidenceReview": {
+        "status": "source-reviewed",
+        "reviewedAt": "2026-07-29",
+        "reviewType": "human-supervised-source-review",
+        "reviewedEvidence": 3
+      }
+    },
+    {
+      "id": "douyin-7660904774895783231",
+      "platform": "抖音",
+      "url": "https://www.douyin.com/video/7660904774895783231",
+      "heroes": [
+        "Yone"
+      ],
+      "title": "永恩 视频证据：秘术冲拳",
+      "creator": "海斗教主张无忌",
+      "publishedAt": "2026-07-10",
+      "expiresAt": "2026-08-24",
+      "durationSeconds": 290,
+      "discoveredAt": "2026-07-30",
+      "analysisStatus": "multimodal-reviewed",
+      "analysisLabel": "AI 提炼 · 证据：画面、语音",
+      "reviewedAt": "2026-07-30",
+      "patchStatus": "needs-game-check",
+      "patchMentioned": null,
+      "summary": "时间戳证据已明确记录强化：秘术冲拳。未显示的打法、理由和版本适用性不作推断。",
+      "strategy": {
+        "id": "build-1",
+        "label": "主方案",
+        "augments": [
+          {
+            "name": "秘术冲拳"
+          }
+        ],
+        "items": [],
+        "runes": [],
+        "skillOrder": [],
+        "summonerSpells": [],
+        "playstyle": []
+      },
+      "strategies": [
+        {
+          "id": "build-1",
+          "label": "主方案",
+          "augments": [
+            {
+              "name": "秘术冲拳"
+            }
+          ],
+          "items": [],
+          "runes": [],
+          "skillOrder": [],
+          "summonerSpells": [],
+          "playstyle": []
+        }
+      ],
+      "evidence": [
+        {
+          "timestamp": "00:00",
+          "kind": "audio",
+          "claim": "目标英雄：永恩"
+        },
+        {
+          "timestamp": "02:45",
+          "kind": "frame",
+          "claim": "主方案·强化：秘术冲拳"
+        }
+      ],
+      "confidence": 0.85,
+      "engagement": {
+        "likes": 94,
+        "comments": 11,
+        "shares": 7,
+        "plays": 0
+      },
+      "caveat": "视频中其他识别结果未通过当前词典或逐项时间戳校验，已省略。 视频未明确证明适用于站点客户端资料快照 26.15。",
+      "frameReview": {
+        "status": "pixel-reviewed",
+        "reviewedAt": "2026-07-29",
+        "reviewType": "human-supervised-pixel-review",
+        "reviewedFrames": 1
+      },
+      "evidenceReview": {
+        "status": "source-reviewed",
+        "reviewedAt": "2026-07-29",
+        "reviewType": "human-supervised-source-review",
+        "reviewedEvidence": 1
+      }
+    },
+    {
+      "id": "douyin-7660069075058132346",
+      "platform": "抖音",
+      "url": "https://www.douyin.com/video/7660069075058132346",
+      "heroes": [
+        "Kindred"
+      ],
+      "title": "千珏 视频证据：更万用的瞄准镜",
+      "creator": "叶成帷玩LOL",
+      "publishedAt": "2026-07-08",
+      "expiresAt": "2026-08-22",
+      "durationSeconds": 73,
+      "discoveredAt": "2026-07-30",
+      "analysisStatus": "multimodal-reviewed",
+      "analysisLabel": "AI 提炼 · 证据：画面",
+      "reviewedAt": "2026-07-30",
+      "patchStatus": "needs-game-check",
+      "patchMentioned": null,
+      "summary": "时间戳证据已明确记录强化：更万用的瞄准镜、威能之追求、心灵净化；装备：棘刺背心、荆棘之甲；符文：主宰。未显示的打法、理由和版本适用性不作推断。",
+      "strategy": {
+        "id": "build-1",
+        "label": "主方案",
+        "augments": [
+          {
+            "name": "更万用的瞄准镜"
+          },
+          {
+            "name": "威能之追求"
+          },
+          {
+            "name": "心灵净化"
+          }
+        ],
+        "items": [
+          {
+            "name": "棘刺背心"
+          },
+          {
+            "name": "荆棘之甲"
+          }
+        ],
+        "runes": [
+          {
+            "name": "主宰"
+          }
+        ],
+        "skillOrder": [],
+        "summonerSpells": [],
+        "playstyle": []
+      },
+      "strategies": [
+        {
+          "id": "build-1",
+          "label": "主方案",
+          "augments": [
+            {
+              "name": "更万用的瞄准镜"
+            },
+            {
+              "name": "威能之追求"
+            },
+            {
+              "name": "心灵净化"
+            }
+          ],
+          "items": [
+            {
+              "name": "棘刺背心"
+            },
+            {
+              "name": "荆棘之甲"
+            }
+          ],
+          "runes": [
+            {
+              "name": "主宰"
+            }
+          ],
+          "skillOrder": [],
+          "summonerSpells": [],
+          "playstyle": []
+        }
+      ],
+      "evidence": [
+        {
+          "timestamp": "00:00",
+          "kind": "frame",
+          "claim": "主方案·强化：更万用的瞄准镜、威能之追求、心灵净化",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:39",
+          "kind": "frame",
+          "claim": "主方案·装备：棘刺背心",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:55",
+          "kind": "frame",
+          "claim": "主方案·装备：荆棘之甲",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:41",
+          "kind": "frame",
+          "claim": "主方案·符文：主宰",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:02",
+          "kind": "frame",
+          "claim": "目标英雄：千珏"
+        }
+      ],
+      "confidence": 0.85,
+      "engagement": {
+        "likes": 0,
+        "comments": 0,
+        "shares": 0,
+        "plays": 0
+      },
+      "caveat": "视频中其他识别结果未通过当前词典或逐项时间戳校验，已省略。 视频未明确证明适用于站点客户端资料快照 26.15。 官方 26.15 已将千珏在海克斯大乱斗的伤害输出修正从 110% 下调至 100%，且伤害修正现在覆盖装备与强化伤害；该视频发布于调整前，搭配可作线索，但不能证明调整后的强度。",
+      "patchImpact": {
+        "patch": "26.15",
+        "effectiveAt": "2026-07-29",
+        "sourcePublishedAt": "2026-07-28",
+        "source": "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-15-notes/",
+        "status": "direct-hero-balance-change",
+        "summary": "官方 26.15 已将千珏在海克斯大乱斗的伤害输出修正从 110% 下调至 100%，且伤害修正现在覆盖装备与强化伤害；该视频发布于调整前，搭配可作线索，但不能证明调整后的强度。"
+      }
+    },
+    {
+      "id": "douyin-7660002019872214315",
+      "platform": "抖音",
+      "url": "https://www.douyin.com/video/7660002019872214315",
+      "heroes": [
+        "JarvanIV"
+      ],
+      "title": "嘉文四世 视频证据：帝国指令",
+      "creator": "皇子凡",
+      "publishedAt": "2026-07-08",
+      "expiresAt": "2026-08-22",
+      "durationSeconds": 162,
+      "discoveredAt": "2026-07-30",
+      "analysisStatus": "multimodal-reviewed",
+      "analysisLabel": "AI 提炼 · 证据：画面、字幕",
+      "reviewedAt": "2026-07-30",
+      "patchStatus": "needs-game-check",
+      "patchMentioned": null,
+      "summary": "时间戳证据已明确记录装备：帝国指令。未显示的打法、理由和版本适用性不作推断。",
+      "strategy": {
+        "id": "build-1",
+        "label": "主方案",
+        "augments": [],
+        "items": [
+          {
+            "name": "帝国指令"
+          }
+        ],
+        "runes": [],
+        "skillOrder": [],
+        "summonerSpells": [],
+        "playstyle": []
+      },
+      "strategies": [
+        {
+          "id": "build-1",
+          "label": "主方案",
+          "augments": [],
+          "items": [
+            {
+              "name": "帝国指令"
+            }
+          ],
+          "runes": [],
+          "skillOrder": [],
+          "summonerSpells": [],
+          "playstyle": []
+        }
+      ],
+      "evidence": [
+        {
+          "timestamp": "00:03",
+          "kind": "subtitle",
+          "claim": "该时间点已核对，未形成可公开的搭配结论",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:11",
+          "kind": "subtitle",
+          "claim": "该时间点已核对，未形成可公开的搭配结论",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:49",
+          "kind": "subtitle",
+          "claim": "主方案·装备：帝国指令",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "01:27",
+          "kind": "subtitle",
+          "claim": "该时间点已核对，未形成可公开的搭配结论",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "02:30",
+          "kind": "subtitle",
+          "claim": "该时间点已核对，未形成可公开的搭配结论",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:00",
+          "kind": "frame",
+          "claim": "目标英雄：嘉文四世"
+        }
+      ],
+      "confidence": 0.85,
+      "engagement": {
+        "likes": 9927,
+        "comments": 808,
+        "shares": 7075,
+        "plays": 0
+      },
+      "caveat": "视频中其他识别结果未通过当前词典或逐项时间戳校验，已省略。 视频未明确证明适用于站点客户端资料快照 26.15。"
+    },
+    {
+      "id": "douyin-7659681962798220906",
+      "platform": "抖音",
+      "url": "https://www.douyin.com/video/7659681962798220906",
+      "heroes": [
+        "Pyke"
+      ],
+      "title": "派克 视频证据：牙仙子",
+      "creator": "阿割哥",
+      "publishedAt": "2026-07-07",
+      "expiresAt": "2026-08-21",
+      "durationSeconds": 50,
+      "discoveredAt": "2026-07-30",
+      "analysisStatus": "multimodal-reviewed",
+      "analysisLabel": "AI 提炼 · 证据：画面、字幕",
+      "reviewedAt": "2026-07-30",
+      "patchStatus": "needs-game-check",
+      "patchMentioned": null,
+      "summary": "时间戳证据已明确记录强化：牙仙子。未显示的打法、理由和版本适用性不作推断。",
+      "strategy": {
+        "id": "build-1",
+        "label": "主方案",
+        "augments": [
+          {
+            "name": "牙仙子"
+          }
+        ],
+        "items": [],
+        "runes": [],
+        "skillOrder": [],
+        "summonerSpells": [],
+        "playstyle": []
+      },
+      "strategies": [
+        {
+          "id": "build-1",
+          "label": "主方案",
+          "augments": [
+            {
+              "name": "牙仙子"
+            }
+          ],
+          "items": [],
+          "runes": [],
+          "skillOrder": [],
+          "summonerSpells": [],
+          "playstyle": []
+        }
+      ],
+      "evidence": [
+        {
+          "timestamp": "00:00",
+          "kind": "frame",
+          "claim": "目标英雄：派克；主方案·强化：牙仙子",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:12",
+          "kind": "subtitle",
+          "claim": "主方案·强化：牙仙子",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:24",
+          "kind": "frame",
+          "claim": "目标英雄：派克",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:36",
+          "kind": "frame",
+          "claim": "目标英雄：派克",
+          "strategyId": "build-1"
+        }
+      ],
+      "confidence": 0.85,
+      "engagement": {
+        "likes": 1540,
+        "comments": 67,
+        "shares": 286,
+        "plays": 0
+      },
+      "caveat": "视频中其他识别结果未通过当前词典或逐项时间戳校验，已省略。 视频未明确证明适用于站点客户端资料快照 26.15。"
+    },
+    {
+      "id": "douyin-7659343483492142362",
+      "platform": "抖音",
+      "url": "https://www.douyin.com/video/7659343483492142362",
+      "heroes": [
+        "Yunara"
+      ],
+      "title": "芸阿娜 视频证据：魔法转物理",
+      "creator": "LPL驻韩研究员（LOL英雄联盟）",
+      "publishedAt": "2026-07-06",
+      "expiresAt": "2026-08-20",
+      "durationSeconds": 213,
+      "discoveredAt": "2026-07-30",
+      "analysisStatus": "multimodal-reviewed",
+      "analysisLabel": "AI 提炼 · 证据：画面、字幕",
+      "reviewedAt": "2026-07-30",
+      "patchStatus": "needs-game-check",
+      "patchMentioned": null,
+      "summary": "时间戳证据已明确记录强化：魔法转物理、神射法师、狂热者。未显示的打法、理由和版本适用性不作推断。",
+      "strategy": {
+        "id": "build-1",
+        "label": "主方案",
+        "augments": [
+          {
+            "name": "魔法转物理"
+          },
+          {
+            "name": "神射法师"
+          },
+          {
+            "name": "狂热者"
+          }
+        ],
+        "items": [],
+        "runes": [],
+        "skillOrder": [],
+        "summonerSpells": [],
+        "playstyle": []
+      },
+      "strategies": [
+        {
+          "id": "build-1",
+          "label": "主方案",
+          "augments": [
+            {
+              "name": "魔法转物理"
+            },
+            {
+              "name": "神射法师"
+            },
+            {
+              "name": "狂热者"
+            }
+          ],
+          "items": [],
+          "runes": [],
+          "skillOrder": [],
+          "summonerSpells": [],
+          "playstyle": []
+        }
+      ],
+      "evidence": [
+        {
+          "timestamp": "00:00",
+          "kind": "frame",
+          "claim": "目标英雄：芸阿娜",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:21",
+          "kind": "subtitle",
+          "claim": "该时间点已核对，未形成可公开的搭配结论",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "01:18",
+          "kind": "subtitle",
+          "claim": "主方案·强化：魔法转物理、神射法师、狂热者",
+          "strategyId": "build-1"
+        }
+      ],
+      "confidence": 0.85,
+      "engagement": {
+        "likes": 190,
+        "comments": 19,
+        "shares": 28,
+        "plays": 0
+      },
+      "caveat": "视频中其他识别结果未通过当前词典或逐项时间戳校验，已省略。 视频未明确证明适用于站点客户端资料快照 26.15。"
+    },
+    {
+      "id": "douyin-7659297100149351281",
+      "platform": "抖音",
+      "url": "https://www.douyin.com/video/7659297100149351281",
+      "heroes": [
+        "Sejuani"
+      ],
+      "title": "瑟庄妮 视频证据：飞身踢",
+      "creator": "AAA啥也不批发",
+      "publishedAt": "2026-07-06",
+      "expiresAt": "2026-08-20",
+      "durationSeconds": 61,
+      "discoveredAt": "2026-07-30",
+      "analysisStatus": "multimodal-reviewed",
+      "analysisLabel": "AI 提炼 · 证据：画面",
+      "reviewedAt": "2026-07-30",
+      "patchStatus": "needs-game-check",
+      "patchMentioned": null,
+      "summary": "时间戳证据已明确记录强化：飞身踢。未显示的打法、理由和版本适用性不作推断。",
+      "strategy": {
+        "id": "build-1",
+        "label": "主方案",
+        "augments": [
+          {
+            "name": "飞身踢"
+          }
+        ],
+        "items": [],
+        "runes": [],
+        "skillOrder": [],
+        "summonerSpells": [],
+        "playstyle": []
+      },
+      "strategies": [
+        {
+          "id": "build-1",
+          "label": "主方案",
+          "augments": [
+            {
+              "name": "飞身踢"
+            }
+          ],
+          "items": [],
+          "runes": [],
+          "skillOrder": [],
+          "summonerSpells": [],
+          "playstyle": []
+        }
+      ],
+      "evidence": [
+        {
+          "timestamp": "00:00",
+          "kind": "frame",
+          "claim": "主方案·强化：飞身踢"
+        },
+        {
+          "timestamp": "00:06",
+          "kind": "frame",
+          "claim": "该时间点已核对，未形成可公开的搭配结论"
+        },
+        {
+          "timestamp": "00:06",
+          "kind": "frame",
+          "claim": "目标英雄：瑟庄妮"
+        }
+      ],
+      "confidence": 0.8,
+      "engagement": {
+        "likes": 0,
+        "comments": 0,
+        "shares": 0,
+        "plays": 0
+      },
+      "caveat": "视频中其他识别结果未通过当前词典或逐项时间戳校验，已省略。 视频未明确证明适用于站点客户端资料快照 26.15。"
+    },
+    {
+      "id": "douyin-7658671457873972520",
+      "platform": "抖音",
+      "url": "https://www.douyin.com/video/7658671457873972520",
+      "heroes": [
+        "Gwen"
+      ],
+      "title": "格温 视频证据：虚幻武器",
+      "creator": "乱斗小比",
+      "publishedAt": "2026-07-04",
+      "expiresAt": "2026-08-18",
+      "durationSeconds": 26,
+      "discoveredAt": "2026-07-30",
+      "analysisStatus": "multimodal-reviewed",
+      "analysisLabel": "AI 提炼 · 证据：画面",
+      "reviewedAt": "2026-07-30",
+      "patchStatus": "needs-game-check",
+      "patchMentioned": null,
+      "summary": "时间戳证据已明确记录强化：虚幻武器。未显示的打法、理由和版本适用性不作推断。",
+      "strategy": {
+        "id": "build-1",
+        "label": "主方案",
+        "augments": [
+          {
+            "name": "虚幻武器"
+          }
+        ],
+        "items": [],
+        "runes": [],
+        "skillOrder": [],
+        "summonerSpells": [],
+        "playstyle": []
+      },
+      "strategies": [
+        {
+          "id": "build-1",
+          "label": "主方案",
+          "augments": [
+            {
+              "name": "虚幻武器"
+            }
+          ],
+          "items": [],
+          "runes": [],
+          "skillOrder": [],
+          "summonerSpells": [],
+          "playstyle": []
+        }
+      ],
+      "evidence": [
+        {
+          "timestamp": "00:00",
+          "kind": "frame",
+          "claim": "目标英雄：格温"
+        },
+        {
+          "timestamp": "00:06",
+          "kind": "frame",
+          "claim": "该时间点已核对，未形成可公开的搭配结论",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:12",
+          "kind": "frame",
+          "claim": "主方案·强化：虚幻武器",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:15",
+          "kind": "frame",
+          "claim": "该时间点已核对，未形成可公开的搭配结论",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:21",
+          "kind": "frame",
+          "claim": "该时间点已核对，未形成可公开的搭配结论",
+          "strategyId": "build-1"
+        }
+      ],
+      "confidence": 0.85,
+      "engagement": {
+        "likes": 85,
+        "comments": 7,
+        "shares": 11,
+        "plays": 0
+      },
+      "caveat": "视频中其他识别结果未通过当前词典或逐项时间戳校验，已省略。 视频未明确证明适用于站点客户端资料快照 26.15。"
+    },
+    {
+      "id": "douyin-7658359322975423778",
+      "platform": "抖音",
+      "url": "https://www.douyin.com/video/7658359322975423778",
+      "heroes": [
+        "TahmKench"
+      ],
+      "title": "塔姆 视频证据：虚幻武器",
+      "creator": "乐子（爽飞边子了）",
+      "publishedAt": "2026-07-04",
+      "expiresAt": "2026-08-18",
+      "durationSeconds": 49,
+      "discoveredAt": "2026-07-30",
+      "analysisStatus": "multimodal-reviewed",
+      "analysisLabel": "AI 提炼 · 证据：画面、字幕",
+      "reviewedAt": "2026-07-30",
+      "patchStatus": "needs-game-check",
+      "patchMentioned": null,
+      "summary": "时间戳证据已明确记录强化：虚幻武器。未显示的打法、理由和版本适用性不作推断。",
+      "strategy": {
+        "id": "build-1",
+        "label": "主方案",
+        "augments": [
+          {
+            "name": "虚幻武器"
+          }
+        ],
+        "items": [],
+        "runes": [],
+        "skillOrder": [],
+        "summonerSpells": [],
+        "playstyle": []
+      },
+      "strategies": [
+        {
+          "id": "build-1",
+          "label": "主方案",
+          "augments": [
+            {
+              "name": "虚幻武器"
+            }
+          ],
+          "items": [],
+          "runes": [],
+          "skillOrder": [],
+          "summonerSpells": [],
+          "playstyle": []
+        }
+      ],
+      "evidence": [
+        {
+          "timestamp": "00:00",
+          "kind": "frame",
+          "claim": "目标英雄：塔姆；主方案·强化：虚幻武器",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:12",
+          "kind": "subtitle",
+          "claim": "目标英雄：塔姆",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:18",
+          "kind": "frame",
+          "claim": "该时间点已核对，未形成可公开的搭配结论",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:30",
+          "kind": "subtitle",
+          "claim": "目标英雄：塔姆",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:45",
+          "kind": "frame",
+          "claim": "该时间点已核对，未形成可公开的搭配结论",
+          "strategyId": "build-1"
+        }
+      ],
+      "confidence": 0.9,
+      "engagement": {
+        "likes": 43192,
+        "comments": 961,
+        "shares": 10314,
+        "plays": 0
+      },
+      "caveat": "视频中其他识别结果未通过当前词典或逐项时间戳校验，已省略。 视频未明确证明适用于站点客户端资料快照 26.15。"
+    },
+    {
+      "id": "douyin-7658343257528773440",
+      "platform": "抖音",
+      "url": "https://www.douyin.com/video/7658343257528773440",
+      "heroes": [
+        "Volibear"
+      ],
+      "title": "沃利贝尔 视频证据：钢化你心",
+      "creator": "夜幕如海",
+      "publishedAt": "2026-07-03",
+      "expiresAt": "2026-08-17",
+      "durationSeconds": 34,
+      "discoveredAt": "2026-07-30",
+      "analysisStatus": "multimodal-reviewed",
+      "analysisLabel": "AI 提炼 · 证据：画面",
+      "reviewedAt": "2026-07-30",
+      "patchStatus": "needs-game-check",
+      "patchMentioned": null,
+      "summary": "时间戳证据已明确记录强化：钢化你心；召唤师技能：闪现。未显示的打法、理由和版本适用性不作推断。",
+      "strategy": {
+        "id": "build-1",
+        "label": "主方案",
+        "augments": [
+          {
+            "name": "钢化你心"
+          }
+        ],
+        "items": [],
+        "runes": [],
+        "skillOrder": [],
+        "summonerSpells": [
+          "闪现"
+        ],
+        "playstyle": []
+      },
+      "strategies": [
+        {
+          "id": "build-1",
+          "label": "主方案",
+          "augments": [
+            {
+              "name": "钢化你心"
+            }
+          ],
+          "items": [],
+          "runes": [],
+          "skillOrder": [],
+          "summonerSpells": [
+            "闪现"
+          ],
+          "playstyle": []
+        }
+      ],
+      "evidence": [
+        {
+          "timestamp": "00:06",
+          "kind": "frame",
+          "claim": "主方案·强化：钢化你心",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:09",
+          "kind": "frame",
+          "claim": "该时间点已核对，未形成可公开的搭配结论",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:12",
+          "kind": "frame",
+          "claim": "该时间点已核对，未形成可公开的搭配结论",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:18",
+          "kind": "frame",
+          "claim": "主方案·召唤师技能：闪现",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:21",
+          "kind": "frame",
+          "claim": "该时间点已核对，未形成可公开的搭配结论",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:33",
+          "kind": "frame",
+          "claim": "目标英雄：沃利贝尔"
+        }
+      ],
+      "confidence": 0.8,
+      "engagement": {
+        "likes": 7,
+        "comments": 3,
+        "shares": 0,
+        "plays": 0
+      },
+      "caveat": "视频中其他识别结果未通过当前词典或逐项时间戳校验，已省略。 视频未明确证明适用于站点客户端资料快照 26.15。"
+    },
+    {
+      "id": "douyin-7658272078344310016",
+      "platform": "抖音",
+      "url": "https://www.douyin.com/video/7658272078344310016",
+      "heroes": [
+        "Lucian"
+      ],
+      "title": "卢锡安 视频证据：狂妄",
+      "creator": "乱斗小比",
+      "publishedAt": "2026-07-03",
+      "expiresAt": "2026-08-17",
+      "durationSeconds": 42,
+      "discoveredAt": "2026-07-30",
+      "analysisStatus": "multimodal-reviewed",
+      "analysisLabel": "AI 提炼 · 证据：画面、字幕",
+      "reviewedAt": "2026-07-30",
+      "patchStatus": "needs-game-check",
+      "patchMentioned": null,
+      "summary": "时间戳证据已明确记录装备：狂妄。未显示的打法、理由和版本适用性不作推断。",
+      "strategy": {
+        "id": "build-1",
+        "label": "主方案",
+        "augments": [],
+        "items": [
+          {
+            "name": "狂妄"
+          }
+        ],
+        "runes": [],
+        "skillOrder": [],
+        "summonerSpells": [],
+        "playstyle": []
+      },
+      "strategies": [
+        {
+          "id": "build-1",
+          "label": "主方案",
+          "augments": [],
+          "items": [
+            {
+              "name": "狂妄"
+            }
+          ],
+          "runes": [],
+          "skillOrder": [],
+          "summonerSpells": [],
+          "playstyle": []
+        }
+      ],
+      "evidence": [
+        {
+          "timestamp": "00:06",
+          "kind": "subtitle",
+          "claim": "目标英雄：卢锡安",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:09",
+          "kind": "frame",
+          "claim": "主方案·装备：狂妄",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:12",
+          "kind": "subtitle",
+          "claim": "该时间点已核对，未形成可公开的搭配结论",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:18",
+          "kind": "subtitle",
+          "claim": "该时间点已核对，未形成可公开的搭配结论",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:24",
+          "kind": "subtitle",
+          "claim": "该时间点已核对，未形成可公开的搭配结论",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:30",
+          "kind": "subtitle",
+          "claim": "该时间点已核对，未形成可公开的搭配结论",
+          "strategyId": "build-1"
+        }
+      ],
+      "confidence": 0.75,
+      "engagement": {
+        "likes": 254,
+        "comments": 34,
+        "shares": 17,
+        "plays": 0
+      },
+      "caveat": "视频中其他识别结果未通过当前词典或逐项时间戳校验，已省略。 视频未明确证明适用于站点客户端资料快照 26.15。"
+    },
+    {
+      "id": "douyin-7657410168582603194",
+      "platform": "抖音",
+      "url": "https://www.douyin.com/video/7657410168582603194",
+      "heroes": [
+        "TahmKench"
+      ],
+      "title": "塔姆 视频证据：虚幻武器",
+      "creator": "云顶张三",
+      "publishedAt": "2026-07-01",
+      "expiresAt": "2026-08-15",
+      "durationSeconds": 41,
+      "discoveredAt": "2026-07-30",
+      "analysisStatus": "multimodal-reviewed",
+      "analysisLabel": "AI 提炼 · 证据：画面、字幕",
+      "reviewedAt": "2026-07-30",
+      "patchStatus": "needs-game-check",
+      "patchMentioned": null,
+      "summary": "时间戳证据已明确记录强化：虚幻武器。未显示的打法、理由和版本适用性不作推断。",
+      "strategy": {
+        "id": "build-1",
+        "label": "主方案",
+        "augments": [
+          {
+            "name": "虚幻武器"
+          }
+        ],
+        "items": [],
+        "runes": [],
+        "skillOrder": [],
+        "summonerSpells": [],
+        "playstyle": []
+      },
+      "strategies": [
+        {
+          "id": "build-1",
+          "label": "主方案",
+          "augments": [
+            {
+              "name": "虚幻武器"
+            }
+          ],
+          "items": [],
+          "runes": [],
+          "skillOrder": [],
+          "summonerSpells": [],
+          "playstyle": []
+        }
+      ],
+      "evidence": [
+        {
+          "timestamp": "00:06",
+          "kind": "subtitle",
+          "claim": "目标英雄：塔姆",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:09",
+          "kind": "frame",
+          "claim": "目标英雄：塔姆；主方案·强化：虚幻武器",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:18",
+          "kind": "frame",
+          "claim": "该时间点已核对，未形成可公开的搭配结论",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:30",
+          "kind": "subtitle",
+          "claim": "该时间点已核对，未形成可公开的搭配结论",
+          "strategyId": "build-1"
+        }
+      ],
+      "confidence": 0.8,
+      "engagement": {
+        "likes": 18932,
+        "comments": 896,
+        "shares": 5173,
+        "plays": 0
+      },
+      "caveat": "视频中其他识别结果未通过当前词典或逐项时间戳校验，已省略。 视频未明确证明适用于站点客户端资料快照 26.15。"
+    },
+    {
+      "id": "douyin-7657062424780336561",
+      "platform": "抖音",
+      "url": "https://www.douyin.com/video/7657062424780336561",
+      "heroes": [
+        "Maokai"
+      ],
+      "title": "茂凯 视频证据：纯粹主义者 - 术师",
+      "creator": "叶成帷玩LOL",
+      "publishedAt": "2026-06-30",
+      "expiresAt": "2026-08-14",
+      "durationSeconds": 103,
+      "discoveredAt": "2026-07-30",
+      "analysisStatus": "multimodal-reviewed",
+      "analysisLabel": "AI 提炼 · 证据：画面",
+      "reviewedAt": "2026-07-30",
+      "patchStatus": "needs-game-check",
+      "patchMentioned": null,
+      "summary": "时间戳证据已明确记录强化：纯粹主义者 - 术师。未显示的打法、理由和版本适用性不作推断。",
+      "strategy": {
+        "id": "build-1",
+        "label": "主方案",
+        "augments": [
+          {
+            "name": "纯粹主义者 - 术师"
+          }
+        ],
+        "items": [],
+        "runes": [],
+        "skillOrder": [],
+        "summonerSpells": [],
+        "playstyle": []
+      },
+      "strategies": [
+        {
+          "id": "build-1",
+          "label": "主方案",
+          "augments": [
+            {
+              "name": "纯粹主义者 - 术师"
+            }
+          ],
+          "items": [],
+          "runes": [],
+          "skillOrder": [],
+          "summonerSpells": [],
+          "playstyle": []
+        }
+      ],
+      "evidence": [
+        {
+          "timestamp": "00:00",
+          "kind": "frame",
+          "claim": "主方案·强化：纯粹主义者 - 术师"
+        },
+        {
+          "timestamp": "00:06",
+          "kind": "frame",
+          "claim": "该时间点已核对，未形成可公开的搭配结论"
+        },
+        {
+          "timestamp": "00:06",
+          "kind": "frame",
+          "claim": "目标英雄：茂凯"
+        }
+      ],
+      "confidence": 0.8,
+      "engagement": {
+        "likes": 0,
+        "comments": 0,
+        "shares": 0,
+        "plays": 0
+      },
+      "caveat": "视频中其他识别结果未通过当前词典或逐项时间戳校验，已省略。 视频未明确证明适用于站点客户端资料快照 26.15。"
+    },
+    {
+      "id": "douyin-7655873215788502272",
+      "platform": "抖音",
+      "url": "https://www.douyin.com/video/7655873215788502272",
+      "heroes": [
+        "Kaisa"
+      ],
+      "title": "卡莎 视频证据：虚幻武器",
+      "creator": "乱斗小比",
+      "publishedAt": "2026-06-27",
+      "expiresAt": "2026-08-11",
+      "durationSeconds": 36,
+      "discoveredAt": "2026-07-30",
+      "analysisStatus": "multimodal-reviewed",
+      "analysisLabel": "AI 提炼 · 证据：画面、字幕",
+      "reviewedAt": "2026-07-30",
+      "patchStatus": "needs-game-check",
+      "patchMentioned": null,
+      "summary": "时间戳证据已明确记录强化：虚幻武器、牙仙子、小小的额外帮助、物法皆修。未显示的打法、理由和版本适用性不作推断。",
+      "strategy": {
+        "id": "build-1",
+        "label": "主方案",
+        "augments": [
+          {
+            "name": "虚幻武器"
+          },
+          {
+            "name": "牙仙子"
+          },
+          {
+            "name": "小小的额外帮助"
+          },
+          {
+            "name": "物法皆修"
+          }
+        ],
+        "items": [],
+        "runes": [],
+        "skillOrder": [],
+        "summonerSpells": [],
+        "playstyle": []
+      },
+      "strategies": [
+        {
+          "id": "build-1",
+          "label": "主方案",
+          "augments": [
+            {
+              "name": "虚幻武器"
+            },
+            {
+              "name": "牙仙子"
+            },
+            {
+              "name": "小小的额外帮助"
+            },
+            {
+              "name": "物法皆修"
+            }
+          ],
+          "items": [],
+          "runes": [],
+          "skillOrder": [],
+          "summonerSpells": [],
+          "playstyle": []
+        }
+      ],
+      "evidence": [
+        {
+          "timestamp": "00:06",
+          "kind": "frame",
+          "claim": "主方案·强化：虚幻武器",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:09",
+          "kind": "subtitle",
+          "claim": "该时间点已核对，未形成可公开的搭配结论",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:12",
+          "kind": "frame",
+          "claim": "主方案·强化：牙仙子",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:15",
+          "kind": "subtitle",
+          "claim": "该时间点已核对，未形成可公开的搭配结论",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:21",
+          "kind": "frame",
+          "claim": "该时间点已核对，未形成可公开的搭配结论",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:27",
+          "kind": "frame",
+          "claim": "主方案·强化：小小的额外帮助",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:30",
+          "kind": "frame",
+          "claim": "主方案·强化：物法皆修",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:33",
+          "kind": "frame",
+          "claim": "该时间点已核对，未形成可公开的搭配结论",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:00",
+          "kind": "frame",
+          "claim": "目标英雄：卡莎"
+        }
+      ],
+      "confidence": 0.8,
+      "engagement": {
+        "likes": 953,
+        "comments": 65,
+        "shares": 123,
+        "plays": 0
+      },
+      "caveat": "视频中其他识别结果未通过当前词典或逐项时间戳校验，已省略。 视频未明确证明适用于站点客户端资料快照 26.15。"
+    },
+    {
+      "id": "douyin-7654543108377464073",
+      "platform": "抖音",
+      "url": "https://www.douyin.com/video/7654543108377464073",
+      "heroes": [
+        "Rammus"
+      ],
+      "title": "拉莫斯 视频证据：界弓",
+      "creator": "太农（斗魂海斗）",
+      "publishedAt": "2026-06-23",
+      "expiresAt": "2026-08-07",
+      "durationSeconds": 162,
+      "discoveredAt": "2026-07-30",
+      "analysisStatus": "multimodal-reviewed",
+      "analysisLabel": "AI 提炼 · 证据：画面",
+      "reviewedAt": "2026-07-30",
+      "patchStatus": "needs-game-check",
+      "patchMentioned": null,
+      "summary": "时间戳证据已明确记录装备：界弓、荆棘之甲。未显示的打法、理由和版本适用性不作推断。",
+      "strategy": {
+        "id": "build-1",
+        "label": "主方案",
+        "augments": [],
+        "items": [
+          {
+            "name": "界弓"
+          },
+          {
+            "name": "荆棘之甲"
+          }
+        ],
+        "runes": [],
+        "skillOrder": [],
+        "summonerSpells": [],
+        "playstyle": []
+      },
+      "strategies": [
+        {
+          "id": "build-1",
+          "label": "主方案",
+          "augments": [],
+          "items": [
+            {
+              "name": "界弓"
+            },
+            {
+              "name": "荆棘之甲"
+            }
+          ],
+          "runes": [],
+          "skillOrder": [],
+          "summonerSpells": [],
+          "playstyle": []
+        }
+      ],
+      "evidence": [
+        {
+          "timestamp": "00:15",
+          "kind": "frame",
+          "claim": "目标英雄：拉莫斯"
+        },
+        {
+          "timestamp": "00:57",
+          "kind": "frame",
+          "claim": "主方案·装备：界弓、荆棘之甲"
+        }
+      ],
+      "confidence": 0.8,
+      "engagement": {
+        "likes": 2352,
+        "comments": 72,
+        "shares": 915,
+        "plays": 0
+      },
+      "caveat": "视频中其他识别结果未通过当前词典或逐项时间戳校验，已省略。 视频未明确证明适用于站点客户端资料快照 26.15。 官方 26.15 已加强视频明确推荐的界弓（Terminus）：晦影攻击特效从固定 30 魔法伤害改为 30（+10%额外攻击力）（+10%法术强度）；该视频发布于调整前，装备名称仍有效，但画面不能证明改动后的强度。",
+      "patchImpact": {
+        "patch": "26.15",
+        "effectiveAt": "2026-07-29",
+        "sourcePublishedAt": "2026-07-28",
+        "source": "https://www.leagueoflegends.com/en-us/news/game-updates/league-of-legends-patch-26-15-notes/",
+        "status": "direct-recommended-item-change",
+        "summary": "官方 26.15 已加强视频明确推荐的界弓（Terminus）：晦影攻击特效从固定 30 魔法伤害改为 30（+10%额外攻击力）（+10%法术强度）；该视频发布于调整前，装备名称仍有效，但画面不能证明改动后的强度。"
+      },
+      "frameReview": {
+        "status": "pixel-reviewed",
+        "reviewedAt": "2026-07-29",
+        "reviewType": "human-supervised-pixel-review",
+        "reviewedFrames": 2
+      },
+      "evidenceReview": {
+        "status": "source-reviewed",
+        "reviewedAt": "2026-07-29",
+        "reviewType": "human-supervised-source-review",
+        "reviewedEvidence": 1
+      }
+    },
+    {
+      "id": "douyin-7654438397746854585",
+      "platform": "抖音",
+      "url": "https://www.douyin.com/video/7654438397746854585",
+      "heroes": [
+        "Jhin"
+      ],
+      "title": "烬 视频证据：踢踏舞",
+      "creator": "云顶张三",
+      "publishedAt": "2026-06-23",
+      "expiresAt": "2026-08-07",
+      "durationSeconds": 42,
+      "discoveredAt": "2026-07-30",
+      "analysisStatus": "multimodal-reviewed",
+      "analysisLabel": "AI 提炼 · 证据：画面、字幕",
+      "reviewedAt": "2026-07-30",
+      "patchStatus": "needs-game-check",
+      "patchMentioned": null,
+      "summary": "时间戳证据已明确记录强化：踢踏舞。未显示的打法、理由和版本适用性不作推断。",
+      "strategy": {
+        "id": "build-1",
+        "label": "主方案",
+        "augments": [
+          {
+            "name": "踢踏舞"
+          }
+        ],
+        "items": [],
+        "runes": [],
+        "skillOrder": [],
+        "summonerSpells": [],
+        "playstyle": []
+      },
+      "strategies": [
+        {
+          "id": "build-1",
+          "label": "主方案",
+          "augments": [
+            {
+              "name": "踢踏舞"
+            }
+          ],
+          "items": [],
+          "runes": [],
+          "skillOrder": [],
+          "summonerSpells": [],
+          "playstyle": []
+        }
+      ],
+      "evidence": [
+        {
+          "timestamp": "00:00",
+          "kind": "frame",
+          "claim": "该时间点已核对，未形成可公开的搭配结论",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:03",
+          "kind": "frame",
+          "claim": "主方案·强化：踢踏舞",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:21",
+          "kind": "subtitle",
+          "claim": "该时间点已核对，未形成可公开的搭配结论",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:00",
+          "kind": "frame",
+          "claim": "目标英雄：烬"
+        }
+      ],
+      "confidence": 0.9,
+      "engagement": {
+        "likes": 25480,
+        "comments": 574,
+        "shares": 5355,
+        "plays": 0
+      },
+      "caveat": "视频中其他识别结果未通过当前词典或逐项时间戳校验，已省略。 视频未明确证明适用于站点客户端资料快照 26.15。"
+    },
+    {
+      "id": "douyin-7654432890050967290",
+      "platform": "抖音",
+      "url": "https://www.douyin.com/video/7654432890050967290",
+      "heroes": [
+        "Karthus"
+      ],
+      "title": "卡尔萨斯 视频证据：牙仙子",
+      "creator": "LOL --蛋妮维雅(冰鸟)",
+      "publishedAt": "2026-06-23",
+      "expiresAt": "2026-08-07",
+      "durationSeconds": 139,
+      "discoveredAt": "2026-07-30",
+      "analysisStatus": "multimodal-reviewed",
+      "analysisLabel": "AI 提炼 · 证据：画面、字幕",
+      "reviewedAt": "2026-07-30",
+      "patchStatus": "needs-game-check",
+      "patchMentioned": null,
+      "summary": "时间戳证据已明确记录强化：牙仙子。未显示的打法、理由和版本适用性不作推断。",
+      "strategy": {
+        "id": "build-1",
+        "label": "主方案",
+        "augments": [
+          {
+            "name": "牙仙子"
+          }
+        ],
+        "items": [],
+        "runes": [],
+        "skillOrder": [],
+        "summonerSpells": [],
+        "playstyle": []
+      },
+      "strategies": [
+        {
+          "id": "build-1",
+          "label": "主方案",
+          "augments": [
+            {
+              "name": "牙仙子"
+            }
+          ],
+          "items": [],
+          "runes": [],
+          "skillOrder": [],
+          "summonerSpells": [],
+          "playstyle": []
+        }
+      ],
+      "evidence": [
+        {
+          "timestamp": "00:00",
+          "kind": "frame",
+          "claim": "目标英雄：卡尔萨斯",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:24",
+          "kind": "subtitle",
+          "claim": "主方案·强化：牙仙子",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:30",
+          "kind": "frame",
+          "claim": "主方案·强化：牙仙子",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "01:18",
+          "kind": "frame",
+          "claim": "该时间点已核对，未形成可公开的搭配结论",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "01:33",
+          "kind": "frame",
+          "claim": "该时间点已核对，未形成可公开的搭配结论",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "02:00",
+          "kind": "frame",
+          "claim": "该时间点已核对，未形成可公开的搭配结论",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "02:09",
+          "kind": "frame",
+          "claim": "该时间点已核对，未形成可公开的搭配结论",
+          "strategyId": "build-1"
+        }
+      ],
+      "confidence": 0.8,
+      "engagement": {
+        "likes": 4181,
+        "comments": 429,
+        "shares": 2585,
+        "plays": 0
+      },
+      "caveat": "视频中其他识别结果未通过当前词典或逐项时间戳校验，已省略。 视频未明确证明适用于站点客户端资料快照 26.15。"
+    },
+    {
+      "id": "douyin-7653321123861466383",
+      "platform": "抖音",
+      "url": "https://www.douyin.com/video/7653321123861466383",
+      "heroes": [
+        "MasterYi"
+      ],
+      "title": "易 视频证据：暴击飞弹",
+      "creator": "以冬（乱斗版）",
+      "publishedAt": "2026-06-20",
+      "expiresAt": "2026-08-04",
+      "durationSeconds": 95,
+      "discoveredAt": "2026-07-30",
+      "analysisStatus": "multimodal-reviewed",
+      "analysisLabel": "AI 提炼 · 证据：画面",
+      "reviewedAt": "2026-07-30",
+      "patchStatus": "needs-game-check",
+      "patchMentioned": null,
+      "summary": "时间戳证据已明确记录强化：暴击飞弹、易损。未显示的打法、理由和版本适用性不作推断。",
+      "strategy": {
+        "id": "build-1",
+        "label": "主方案",
+        "augments": [
+          {
+            "name": "暴击飞弹"
+          },
+          {
+            "name": "易损"
+          }
+        ],
+        "items": [],
+        "runes": [],
+        "skillOrder": [],
+        "summonerSpells": [],
+        "playstyle": []
+      },
+      "strategies": [
+        {
+          "id": "build-1",
+          "label": "主方案",
+          "augments": [
+            {
+              "name": "暴击飞弹"
+            },
+            {
+              "name": "易损"
+            }
+          ],
+          "items": [],
+          "runes": [],
+          "skillOrder": [],
+          "summonerSpells": [],
+          "playstyle": []
+        }
+      ],
+      "evidence": [
+        {
+          "timestamp": "00:00",
+          "kind": "frame",
+          "claim": "该时间点已核对，未形成可公开的搭配结论",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:12",
+          "kind": "frame",
+          "claim": "目标英雄：易；主方案·强化：暴击飞弹、易损",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:06",
+          "kind": "frame",
+          "claim": "该时间点已核对，未形成可公开的搭配结论",
+          "strategyId": "build-1"
+        }
+      ],
+      "confidence": 0.85,
+      "engagement": {
+        "likes": 10854,
+        "comments": 537,
+        "shares": 2211,
+        "plays": 0
+      },
+      "caveat": "视频中其他识别结果未通过当前词典或逐项时间戳校验，已省略。 视频未明确证明适用于站点客户端资料快照 26.15。"
+    },
+    {
+      "id": "douyin-7652383110165302574",
+      "platform": "抖音",
+      "url": "https://www.douyin.com/video/7652383110165302574",
+      "heroes": [
+        "Teemo"
+      ],
+      "title": "提莫 视频证据：大法师",
+      "creator": "乐子（爽飞边子了）",
+      "publishedAt": "2026-06-18",
+      "expiresAt": "2026-08-02",
+      "durationSeconds": 54,
+      "discoveredAt": "2026-07-30",
+      "analysisStatus": "multimodal-reviewed",
+      "analysisLabel": "AI 提炼 · 证据：画面、字幕",
+      "reviewedAt": "2026-07-30",
+      "patchStatus": "needs-game-check",
+      "patchMentioned": null,
+      "summary": "时间戳证据已明确记录强化：大法师。未显示的打法、理由和版本适用性不作推断。",
+      "strategy": {
+        "id": "build-1",
+        "label": "主方案",
+        "augments": [
+          {
+            "name": "大法师"
+          }
+        ],
+        "items": [],
+        "runes": [],
+        "skillOrder": [],
+        "summonerSpells": [],
+        "playstyle": []
+      },
+      "strategies": [
+        {
+          "id": "build-1",
+          "label": "主方案",
+          "augments": [
+            {
+              "name": "大法师"
+            }
+          ],
+          "items": [],
+          "runes": [],
+          "skillOrder": [],
+          "summonerSpells": [],
+          "playstyle": []
+        }
+      ],
+      "evidence": [
+        {
+          "timestamp": "00:09",
+          "kind": "subtitle",
+          "claim": "主方案·强化：大法师",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:24",
+          "kind": "subtitle",
+          "claim": "该时间点已核对，未形成可公开的搭配结论",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:33",
+          "kind": "frame",
+          "claim": "该时间点已核对，未形成可公开的搭配结论",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:45",
+          "kind": "subtitle",
+          "claim": "该时间点已核对，未形成可公开的搭配结论",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:00",
+          "kind": "frame",
+          "claim": "目标英雄：提莫"
+        }
+      ],
+      "confidence": 0.85,
+      "engagement": {
+        "likes": 43659,
+        "comments": 1431,
+        "shares": 13169,
+        "plays": 0
+      },
+      "caveat": "视频中其他识别结果未通过当前词典或逐项时间戳校验，已省略。 视频未明确证明适用于站点客户端资料快照 26.15。"
+    },
+    {
+      "id": "douyin-7651837467763958459",
+      "platform": "抖音",
+      "url": "https://www.douyin.com/video/7651837467763958459",
+      "heroes": [
+        "Tryndamere"
+      ],
+      "title": "泰达米尔 视频证据：大法师",
+      "creator": "LOL --蛋妮维雅(冰鸟)",
+      "publishedAt": "2026-06-16",
+      "expiresAt": "2026-07-31",
+      "durationSeconds": 165,
+      "discoveredAt": "2026-07-30",
+      "analysisStatus": "multimodal-reviewed",
+      "analysisLabel": "AI 提炼 · 证据：画面、字幕",
+      "reviewedAt": "2026-07-30",
+      "patchStatus": "needs-game-check",
+      "patchMentioned": null,
+      "summary": "时间戳证据已明确记录强化：大法师。未显示的打法、理由和版本适用性不作推断。",
+      "strategy": {
+        "id": "build-1",
+        "label": "主方案",
+        "augments": [
+          {
+            "name": "大法师"
+          }
+        ],
+        "items": [],
+        "runes": [],
+        "skillOrder": [],
+        "summonerSpells": [],
+        "playstyle": []
+      },
+      "strategies": [
+        {
+          "id": "build-1",
+          "label": "主方案",
+          "augments": [
+            {
+              "name": "大法师"
+            }
+          ],
+          "items": [],
+          "runes": [],
+          "skillOrder": [],
+          "summonerSpells": [],
+          "playstyle": []
+        }
+      ],
+      "evidence": [
+        {
+          "timestamp": "00:12",
+          "kind": "frame",
+          "claim": "主方案·强化：大法师",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:16",
+          "kind": "subtitle",
+          "claim": "该时间点已核对，未形成可公开的搭配结论",
+          "strategyId": "build-1"
+        },
+        {
+          "timestamp": "00:08",
+          "kind": "frame",
+          "claim": "目标英雄：泰达米尔"
+        }
+      ],
+      "confidence": 0.8,
+      "engagement": {
+        "likes": 615,
+        "comments": 126,
+        "shares": 1338,
+        "plays": 0
+      },
+      "caveat": "视频中其他识别结果未通过当前词典或逐项时间戳校验，已省略。 视频未明确证明适用于站点客户端资料快照 26.15。"
+    },
+    {
+      "id": "douyin-7651688089383623419",
+      "platform": "抖音",
+      "url": "https://www.douyin.com/video/7651688089383623419",
+      "heroes": [
+        "Viego"
+      ],
+      "title": "佛耶戈 视频证据：夜狩",
+      "creator": "睿睿大魔王QAQ",
+      "publishedAt": "2026-06-15",
+      "expiresAt": "2026-07-30",
+      "durationSeconds": 72,
+      "discoveredAt": "2026-07-30",
+      "analysisStatus": "multimodal-reviewed",
+      "analysisLabel": "AI 提炼 · 证据：画面、字幕",
+      "reviewedAt": "2026-07-30",
+      "patchStatus": "needs-game-check",
+      "patchMentioned": null,
+      "summary": "时间戳证据已明确记录强化：夜狩、扳机炼狱、最终形态；装备：收集者。未显示的打法、理由和版本适用性不作推断。",
+      "strategy": {
+        "id": "build-1",
+        "label": "主方案",
+        "augments": [
+          {
+            "name": "夜狩"
+          },
+          {
+            "name": "扳机炼狱"
+          },
+          {
+            "name": "最终形态"
+          }
+        ],
+        "items": [
+          {
+            "name": "收集者"
+          }
+        ],
+        "runes": [],
+        "skillOrder": [],
+        "summonerSpells": [],
+        "playstyle": []
+      },
+      "strategies": [
+        {
+          "id": "build-1",
+          "label": "主方案",
+          "augments": [
+            {
+              "name": "夜狩"
+            },
+            {
+              "name": "扳机炼狱"
+            },
+            {
+              "name": "最终形态"
+            }
+          ],
+          "items": [
+            {
+              "name": "收集者"
+            }
+          ],
+          "runes": [],
+          "skillOrder": [],
+          "summonerSpells": [],
+          "playstyle": []
+        }
+      ],
+      "evidence": [
+        {
+          "timestamp": "00:06",
+          "kind": "frame",
+          "strategyId": "build-1",
+          "claim": "海克斯强化选择：夜狩、扳机炼狱、最终形态"
+        },
+        {
+          "timestamp": "00:09",
+          "kind": "frame",
+          "strategyId": "build-1",
+          "claim": "装备选择：收集者"
+        },
+        {
+          "timestamp": "01:03",
+          "kind": "subtitle",
+          "strategyId": "build-1",
+          "claim": "展示佛耶戈的进攻型打法"
+        }
+      ],
+      "confidence": 0.8,
+      "engagement": {
+        "likes": 9,
+        "comments": 0,
+        "shares": 0,
+        "plays": 0
+      },
+      "caveat": "视频中未详细说明符文和技能加点 视频未明确证明适用于站点客户端资料快照 26.15。"
     }
   ]
 }

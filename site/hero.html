@@ -5,19 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#010a13">
 <title>英雄攻略 · 海斗速查</title>
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/style.css?v=20260730-1">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⬡</text></svg>">
 </head>
 <body>
 <a class="skip-link" href="#main">跳到攻略内容</a>
 <header class="topbar">
   <a class="logo" href="index.html" aria-label="海斗速查首页">⬡ 海斗<b>速查</b></a>
-  <div class="patch-badge" id="patchBadge"></div>
+  <div class="patch-badge" id="patchBadge">加载中…</div>
 </header>
 
 <main class="container" id="main">
   <a class="back-btn" href="index.html">← 返回全部英雄</a>
-  <div id="content" aria-live="polite"><div class="empty-tip">加载中…</div></div>
+  <div id="content"><div class="empty-tip">加载中…</div></div>
+  <div class="load-error" id="loadError" role="alert" aria-atomic="true"></div>
 </main>
 
 <footer class="site-footer" id="footer"></footer>

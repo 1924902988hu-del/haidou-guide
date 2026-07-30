@@ -101,3 +101,31 @@ def save_json(path, obj):
 def load_json(path):
     with open(path, encoding="utf-8") as f:
         return json.load(f)
+
+
+def valid_item_core_rows(rows):
+    """只保留由 3 件不同合法装备组成、且彼此不重复的核心出装行。"""
+    if not isinstance(rows, list):
+        return []
+    valid = []
+    seen = set()
+    for row in rows:
+        if not isinstance(row, list) or len(row) != 3:
+            continue
+        ids = []
+        for item in row:
+            item_id = item.get("id") if isinstance(item, dict) else item
+            if (
+                not isinstance(item_id, int)
+                or isinstance(item_id, bool)
+                or item_id <= 0
+            ):
+                ids = []
+                break
+            ids.append(item_id)
+        key = tuple(ids)
+        if len(ids) != 3 or len(set(ids)) != 3 or key in seen:
+            continue
+        seen.add(key)
+        valid.append(row)
+    return valid

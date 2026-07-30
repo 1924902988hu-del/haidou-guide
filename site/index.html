@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#010a13">
 <meta name="description" content="海克斯大乱斗英雄攻略速查:天赋、技能加点、海克斯强化搭配、出装,支持昵称搜索与定位分类。">
 <title>海斗速查 · 海克斯大乱斗英雄攻略</title>
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/style.css?v=20260730-1">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⬡</text></svg>">
 </head>
 <body>
@@ -23,19 +23,22 @@
       <h1 id="homeTitle">海克斯大乱斗，选完英雄就查</h1>
       <p>昵称、拼音都能搜；强化、出装、符文和技能顺序集中在一页。</p>
     </div>
-    <div class="result-meta" id="resultMeta" aria-live="polite">正在读取英雄数据…</div>
+    <div class="result-meta" id="resultMeta">正在读取英雄数据…</div>
+    <div class="sr-only" id="searchStatus" role="status" aria-atomic="true">正在读取英雄数据…</div>
   </section>
 
   <div class="searchbox" role="search">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a99ac" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
     <label class="sr-only" for="search">搜索英雄</label>
-    <input id="search" type="search" placeholder="搜英雄：女枪、蛮王、EZ、拼音…" autocomplete="off">
+    <input id="search" type="search" placeholder="搜英雄：女枪、蛮王、EZ、拼音…" autocomplete="off" aria-describedby="searchHelp">
+    <span class="sr-only" id="searchHelp">英文搜索至少输入两个字母；中文昵称可以输入一个字。</span>
   </div>
 
-  <div class="role-tabs" id="roleTabs" aria-label="按定位筛选"></div>
+  <div class="role-tabs" id="roleTabs" role="group" aria-label="按定位筛选"></div>
 
   <div class="hero-grid" id="grid"></div>
   <div class="empty-tip" id="empty" hidden>没有匹配的英雄,换个昵称试试?</div>
+  <div class="load-error" id="loadError" role="alert" aria-atomic="true"></div>
 </main>
 
 <footer class="site-footer" id="footer"></footer>
